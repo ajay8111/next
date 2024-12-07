@@ -55,7 +55,7 @@ const CourseContent = () => {
 
   const [expandedSections, setExpandedSections] = useState([]);
   const [currentVideo, setCurrentVideo] = useState(sections[0].videos[0]);
-  const [videoDescription, setVideoDescription] = useState(currentVideo.title); // New state to hold video description
+  const [videoDescription, setVideoDescription] = useState(currentVideo.title); 
 
   const toggleSection = (sectionIndex) => {
     setExpandedSections((prev) =>
@@ -67,10 +67,10 @@ const CourseContent = () => {
 
   const selectVideo = (section, video) => {
     setCurrentVideo(video);
-    setVideoDescription(video.title); // Update the video description when a video is selected
+    setVideoDescription(video.title);
 
     if (!video.watched) {
-      video.watched = true; // Mark video as watched
+      video.watched = true;
       const newSections = [...sections];
       const sectionIndex = newSections.findIndex((sec) => sec.name === section.name);
       newSections[sectionIndex].videos = [...section.videos];
@@ -83,19 +83,20 @@ const CourseContent = () => {
   };
 
   return (
-    <div className="flex flex-row-reverse h-screen overflow-hidden">
-      <div className="sidebar w-[450px] bg-white p-1">
+    <div className="flex flex-row-reverse h-screen ">
+      <div className=" w-[450px] bg-white p-1 h-screen flex flex-col items-start justify-center">
         <h2 className="text-[22px] font-bold mb-6 text-black">Class</h2>
+      <div className='h-screen overflow-x-auto no-scrollbar'>
 
         {sections.map((section, sectionIndex) => (
           <div
             key={section.name}
-            className="section mb-0 min-h-[10px] flex flex-col transition-all duration-300 ease-in-out" // Removed margin bottom here
-          >
-            <div
-              className="section-header p-5 flex justify-between items-center cursor-pointer hover:bg-blue-200"
-              onClick={() => toggleSection(sectionIndex)}
+            className=" mb-0 min-h-[10px] flex flex-col transition-all duration-300 ease-in-out" 
             >
+            <div
+              className=" p-5 flex justify-between items-center cursor-pointer hover:bg-blue-200"
+              onClick={() => toggleSection(sectionIndex)}
+              >
               <div>
                 <span className="font-semibold text-base text-black">{section.name}</span>
                 <span className="block text-gray-600 text-sm">
@@ -143,12 +144,12 @@ const CourseContent = () => {
               </ul>
             )}
           </div>
-        ))}
+        ))}</div>
       </div>
 
       {/* Video Player Section */}
-      <div className="video-player w-full bg-white p-5">
-        <div className="video-wrapper bg-black rounded-lg overflow-hidden w-full">
+      <div className=" w-full bg-white p-5">
+        <div className=" bg-black rounded-lg overflow-hidden w-full">
           <iframe
             className="w-full h-[80vh] rounded-lg"
             src={currentVideo.link}
@@ -157,7 +158,7 @@ const CourseContent = () => {
             allowFullScreen
           ></iframe>
         </div>
-        <div className="video-info mt-4">
+        <div className="mt-4">
           <h3 className="text-2xl font-bold text-black">{videoDescription}</h3>
           {/* Description will show the video name here */}
         </div>
