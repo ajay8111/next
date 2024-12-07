@@ -84,7 +84,7 @@ const CourseContent = () => {
 
   return (
     <div className="flex flex-row-reverse h-screen ">
-      <div className=" w-[450px] bg-white p-1 h-screen flex flex-col items-start justify-center">
+      <div className=" w-[450px] bg-white p-0 h-screen flex flex-col items-start justify-center">
         <h2 className="text-[22px] font-bold mb-6 text-black">Class</h2>
       <div className='h-screen overflow-x-auto no-scrollbar'>
 
@@ -148,7 +148,7 @@ const CourseContent = () => {
       </div>
 
       {/* Video Player Section */}
-      <div className=" w-full bg-white p-5">
+      <div className=" w-full bg-white ">
         <div className=" bg-black rounded-lg overflow-hidden w-full">
           <iframe
             className="w-full h-[80vh] rounded-lg"
