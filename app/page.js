@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'  // Correct import for the app directory
-import styles from '../styles/python.module.css'
+import styles from './styles/python.module.css'
 
 export default function Home() {
   const router = useRouter()  // Correct hook from next/navigation for the app directory
