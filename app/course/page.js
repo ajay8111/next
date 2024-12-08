@@ -197,12 +197,12 @@ const CourseContent = () => {
   };
 
   return (
-    <div className="flex flex-row-reverse h-screen ">
-      <div className=" w-[450px] bg-white p-0 h-screen flex flex-col items-start justify-center border-l-2">
+    <div className="flex flex-row-reverse">
+      <div className=" w-[450px] bg-white p-0  flex flex-col items-start justify-center border-l-2">
         <h2 className="text-[22px] font-bold mb-6 text-black pl-5 pt-5">
-          Class
+          Classes
         </h2>
-        <div className="h-screen overflow-x-auto no-scrollbar">
+        <div className="h-screen overflow-x-auto">
           {sections.map((section, sectionIndex) => (
             <div
               key={section.name}
@@ -271,24 +271,32 @@ const CourseContent = () => {
       </div>
 
       {/* Video Player Section */}
-      <div className=" w-full bg-white ">
-        <div className=" bg-black  overflow-hidden w-full">
+      <div className=" w-full bg-white">
+        <div className="overflow-hidden w-full">
           <iframe
-            className="w-full h-[80vh] rounded-lg"
+            className="w-full h-[80vh]"
             src={currentVideo.link}
             title="Video Player"
             frameBorder="0"
             allowFullScreen
           ></iframe>
         </div>
-        <div className="w-full text-black text-2xl p-5 border-b-2">
-          Overview
-        </div>
+        <div className="w-full text-black text-xl p-5 border-b-2">Overview</div>
         <div className="mt-4">
-          <h3 className="text-2xl m-8 font-bold text-black">
+          <h3 className="text-2xl m-8 font-bold text-black mb-4">
             {videoDescription}
           </h3>
-          {/* Description will show the video name here */}
+        </div>
+        <div className="m-9">
+          <p className=" text-lg">
+            This section contains the detailed description of the selected video
+            and can be dynamically updated based on the content. Feel free to
+            customize this area to provide valuable information about the
+            current topic being covered.This section contains the detailed description of the selected video
+            and can be dynamically updated based on the content. Feel free to
+            customize this area to provide valuable information about the
+            current topic being covered.
+          </p>
         </div>
       </div>
     </div>
