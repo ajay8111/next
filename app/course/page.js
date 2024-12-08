@@ -167,7 +167,7 @@ const CourseContent = () => {
 
   const [expandedSections, setExpandedSections] = useState([]);
   const [currentVideo, setCurrentVideo] = useState(sections[0].videos[0]);
-  const [videoDescription, setVideoDescription] = useState(currentVideo.title);
+  const [activeTab, setActiveTab] = useState("overview");
 
   const toggleSection = (sectionIndex) => {
     setExpandedSections((prev) =>
@@ -179,8 +179,6 @@ const CourseContent = () => {
 
   const selectVideo = (section, video) => {
     setCurrentVideo(video);
-    setVideoDescription(video.title);
-
     if (!video.watched) {
       video.watched = true;
       const newSections = [...sections];
@@ -190,15 +188,15 @@ const CourseContent = () => {
       newSections[sectionIndex].videos = [...section.videos];
       newSections[sectionIndex].videos[section.videos.indexOf(video)] = video;
 
-      // Update watched count in section details
       newSections[sectionIndex].details.watched += 1;
       setSections(newSections);
     }
   };
 
   return (
-    <div className="flex flex-row-reverse">
-      <div className=" w-[450px] bg-white p-0  flex flex-col items-start justify-center border-l-2">
+    <div className="flex flex-row-reverse overflow-auto">
+      <div className=" w-[450px] bg-white p-0 flex flex-col items-start justify-center border-l-2">
+        {/* Classes Section */}
         <h2 className="text-[22px] font-bold mb-6 text-black pl-5 pt-5">
           Classes
         </h2>
@@ -206,10 +204,10 @@ const CourseContent = () => {
           {sections.map((section, sectionIndex) => (
             <div
               key={section.name}
-              className=" mb-0 min-h-[10px] flex flex-col transition-all duration-300 ease-in-out"
+              className="mb-0 min-h-[10px] flex flex-col transition-all duration-300 ease-in-out"
             >
               <div
-                className=" p-5 flex justify-between items-center cursor-pointer hover:bg-blue-200"
+                className="p-5 flex justify-between items-center cursor-pointer hover:bg-blue-200"
                 onClick={() => toggleSection(sectionIndex)}
               >
                 <div>
@@ -228,7 +226,6 @@ const CourseContent = () => {
                   )}
                 </div>
               </div>
-
               {expandedSections.includes(sectionIndex) && (
                 <ul className="flex flex-col gap-2 p-4">
                   {section.videos.map((video) => (
@@ -240,25 +237,19 @@ const CourseContent = () => {
                     >
                       <input type="checkbox" className="mt-1 accent-black" />
                       <li
-                        className={`rounded-none flex flex-col flex-1 justify-between items-start cursor-pointer text-black
-                        `}
+                        className="rounded-none flex flex-col flex-1 justify-between items-start cursor-pointer text-black"
                         onClick={() => selectVideo(section, video)}
                       >
-                        {/* Video Title */}
-                        <span className={`text-[14px]  w-full`}>
+                        <span className="text-[14px] w-full">
                           {video.title}
                         </span>
-
-                        {/* Wrapper for YouTube Icon and Duration */}
                         <div className="flex items-center space-x-2 mt-1">
                           <img
                             src="/youtube.png"
                             alt="Video Icon"
                             className="h-5 w-5"
                           />
-                          <span className={`text-[14px] `}>
-                            {video.duration}
-                          </span>
+                          <span className="text-[14px]">{video.duration}</span>
                         </div>
                       </li>
                     </div>
@@ -271,7 +262,7 @@ const CourseContent = () => {
       </div>
 
       {/* Video Player Section */}
-      <div className=" w-full bg-white">
+      <div className="w-full bg-white">
         <div className="overflow-hidden w-full">
           <iframe
             className="w-full h-[80vh]"
@@ -281,22 +272,57 @@ const CourseContent = () => {
             allowFullScreen
           ></iframe>
         </div>
-        <div className="w-full text-black text-xl p-5 border-b-2">Overview</div>
-        <div className="mt-4">
-          <h3 className="text-2xl m-8 font-bold text-black mb-4">
-            {videoDescription}
-          </h3>
+
+        {/* Tabs Section */}
+        <div className="flex justify-around border-b-2">
+          <button
+            className={`w-60 text-center py-3 font-semibold ${
+              activeTab === "overview" ? "text-black border-b-2 border-black" : "text-gray-600"
+            }`}
+            onClick={() => setActiveTab("overview")}
+          >
+            Overview
+          </button>
+          <button
+            className={`w-60 text-center py-3 font-semibold ${
+              activeTab === "notes" ? "text-black border-b-2 border-black" : "text-gray-600"
+            }`}
+            onClick={() => setActiveTab("notes")}
+          >
+            Notes
+          </button>
         </div>
-        <div className="m-9">
-          <p className=" text-lg">
-            This section contains the detailed description of the selected video
-            and can be dynamically updated based on the content. Feel free to
-            customize this area to provide valuable information about the
-            current topic being covered.This section contains the detailed description of the selected video
-            and can be dynamically updated based on the content. Feel free to
-            customize this area to provide valuable information about the
-            current topic being covered.
-          </p>
+
+        {/* Tab Content */}
+        <div className="p-6">
+          {activeTab === "overview" && (
+            <div>
+              <h3 className="text-2xl font-bold text-black mb-4">
+                {currentVideo.title}
+              </h3>
+              <p className="text-lg">
+                This section contains a detailed description of the 
+                video. Able to customize this content to provide additional
+                context about the topic.
+                This section contains a detailed description of the 
+                video. Able to customize this content to provide additional
+                context about the topic.
+              </p>
+            </div>
+          )}
+          {activeTab === "notes" && (
+            <div>
+              <h3 className="text-2xl font-bold text-black mb-4">Notes</h3>
+              {/* <textarea
+                className="w-full h-[150px] border rounded p-4"
+                placeholder="Write your notes here..."
+              /> */}
+              <p className="text-lg">
+                This section contains notes related to the 
+                video. Able to customize this content.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
