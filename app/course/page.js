@@ -238,7 +238,7 @@ const CourseContent = () => {
                         currentVideo.title === video.title ? "bg-gray-200" : ""
                       }`}
                     >
-                      <input type="checkbox" className="mt-1" />
+                      <input type="checkbox" className="mt-1 accent-black" />
                       <li
                         className={`rounded-none flex flex-col flex-1 justify-between items-start cursor-pointer text-black
                         `}
