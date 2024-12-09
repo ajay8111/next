@@ -287,7 +287,7 @@ const CourseContent = () => {
           )}
         </div>
       </div>
-      <div className=" lg:w-[20%]  bg-white p-0 flex flex-col items-start justify-center border-l-0">
+      <div className=" lg:w-[20%]  bg-white p-0 flex flex-col items-start justify-center border-l-2">
         {/* Classes Section */}
         <h2 className="text-[22px]  font-bold mb-6 text-black pl-5 pt-2">
           Classes
