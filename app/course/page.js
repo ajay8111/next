@@ -98,8 +98,7 @@ const CourseContent = () => {
         {
           title: "6. Curriculam Document",
           link: "/Curriculum.pdf",
-          type:"pdf"
-         
+          type: "pdf",
         },
       ],
     },
@@ -202,32 +201,30 @@ const CourseContent = () => {
   const getVideoIcon = (video) => {
     // Check if it's the Carriculam Document video
     if (video.title === "6. Curriculam Document") {
-      return "/doc.png"; // Use doc.png for this specific video
+      return "/docg.png"; // Use doc.png for this specific video
     }
-    return "/youtube.png"; // Default to youtube.png for other videos
+    return "/youtubeg.png"; // Default to youtube.png for other videos
   };
 
-  const VideoPDF = () =>{
-    if (currentVideo.type="pdf"){
-      return(
+  const VideoPDF = () => {
+    if (currentVideo.type === "pdf") {
+      return (
         <object
-        data={currentVideo.link}
-        type="application/pdf"
-        className="w-full h-[50vh] lg:h-[80vh]"
+          data={currentVideo.link}
+          type="application/pdf"
+          className="w-full h-[50vh] lg:h-[80vh]"
         ></object>
-      )
+      );
     }
-  }
-  
+  };
 
   return (
-    <div className="flex  overflow-auto">
-                
+    <div className="flex flex-col lg:flex-row overflow-auto">
       {/* Video Player Section */}
       <div className="w-full lg:w-[80%] bg-white">
         <div className="overflow-hidden w-full">
           <iframe
-            className="w-full h-[50vh] lg:h-[80vh]"
+            className="w-full h-[30vh] sm:h-[40vh] lg:h-[80vh]"
             src={currentVideo.link}
             title="Video Player"
             frameBorder="0"
@@ -239,7 +236,9 @@ const CourseContent = () => {
         <div className="flex justify-around border-b-2">
           <button
             className={`w-70 text-center py-3 font-semibold ${
-              activeTab === "overview" ? "text-black border-b-2 border-black" : "text-gray-600"
+              activeTab === "overview"
+                ? "text-black border-b-2 border-black"
+                : "text-gray-600"
             }`}
             onClick={() => setActiveTab("overview")}
           >
@@ -247,7 +246,9 @@ const CourseContent = () => {
           </button>
           <button
             className={`w-70 text-center py-3 font-semibold ${
-              activeTab === "notes" ? "text-black border-b-2 border-black" : "text-gray-600"
+              activeTab === "notes"
+                ? "text-black border-b-2 border-black"
+                : "text-gray-600"
             }`}
             onClick={() => setActiveTab("notes")}
           >
@@ -256,17 +257,16 @@ const CourseContent = () => {
         </div>
 
         {/* Tab Content */}
-        <div className="p-6">
+        <div className="p-4">
           {activeTab === "overview" && (
             <div>
               <h3 className="text-2xl font-bold text-black mb-4">
                 {currentVideo.title}
               </h3>
               <p className="text-lg">
-                This section contains a detailed description of the 
-                video. Able to customize this content to provide additional
-                context about the topic.
-                This section contains a detailed description of the 
+                This section contains a detailed description of the video. Able
+                to customize this content to provide additional context about
+                the topic. This section contains a detailed description of the
                 video. Able to customize this content to provide additional
                 context about the topic.
               </p>
@@ -280,26 +280,26 @@ const CourseContent = () => {
                 placeholder="Write your notes here..."
               /> */}
               <p className="text-lg">
-                This section contains notes related to the 
-                video. Able to customize this content.
+                This section contains notes related to the video. Able to
+                customize this content.
               </p>
             </div>
           )}
         </div>
       </div>
-      <div className=" w-auto lg:w-[20%]  bg-white p-0 flex flex-col items-start justify-center border-l-0">
+      <div className=" lg:w-[20%]  bg-white p-0 flex flex-col items-start justify-center border-l-0">
         {/* Classes Section */}
-        <h2 className="text-[22px] font-bold mb-6 text-black pl-5 pt-2">
+        <h2 className="text-[22px]  font-bold mb-6 text-black pl-5 pt-2">
           Classes
         </h2>
-        <div className="h-screen overflow-x-auto">
+        <div className="h-screen overflow-x-auto w-full items-start">
           {sections.map((section, sectionIndex) => (
             <div
               key={section.name}
-              className="mb-2 min-h-[20px] flex flex-col transition-all duration-300 ease-in-out"
+              className="mb-1 min-h-[20px] flex flex-col transition-all duration-300 ease-in-out"
             >
               <div
-                className="p-4 flex justify-between items-center cursor-pointer hover:bg-blue-200"
+                className="p-4 flex justify-between items-start cursor-pointer hover:bg-blue-200"
                 onClick={() => toggleSection(sectionIndex)}
               >
                 <div>
@@ -319,29 +319,31 @@ const CourseContent = () => {
                 </div>
               </div>
               {expandedSections.includes(sectionIndex) && (
-                <ul className="flex flex-col gap-2 p-4">
+                <ul className="flex flex-col gap-0 p-0 ">
                   {section.videos.map((video) => (
                     <div
                       key={video.title}
-                      className={`flex justify-start items-start gap-2 p-2 hover:bg-gray-200 ${
+                      className={`flex justify-start items-start gap-5 p-4 hover:bg-gray-200 ${
                         currentVideo.title === video.title ? "bg-gray-200" : ""
                       }`}
                     >
                       <input type="checkbox" className="mt-1 accent-black" />
                       <li
-                        className="rounded-none flex flex-col flex-1 justify-between items-start cursor-pointer text-black"
+                        className="rounded-none flex flex-col flex-1 justify-between cursor-pointer text-black"
                         onClick={() => selectVideo(section, video)}
                       >
-                        <span className="text-[14px] w-full">
+                        <span className="text-[14px] sm:text-[14px] md:text-[14px] lg:text-[14px] w-full">
                           {video.title}
                         </span>
-                        <div className="flex items-center space-x-2 mt-1">
+                        <div className="flex items-center space-x-2 mt-2 sm:mt-0 sm:flex-row text-gray-600">
                           <img
                             src={getVideoIcon(video)}
                             alt="Video Icon"
-                            className="h-5 w-5"
+                            className="h-4 w-4 sm:h-4 sm:w-4 md:h-4 md:w-4 lg:h-4 lg:w-4"
                           />
-                          <span className="text-[14px]">{video.duration}</span>
+                          <span className="text-[14px] sm:text-[14px] md:text-[14px] lg:text-[14px]">
+                            {video.duration}
+                          </span>
                         </div>
                       </li>
                     </div>

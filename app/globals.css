@@ -36,3 +36,8 @@ body {
     flex-direction: column;
   }
 }
+@media (max-width: 768px) {
+  iframe {
+    height: 30vh; /* Reduce the height for mobile */
+  }
+}
