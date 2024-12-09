@@ -31,3 +31,8 @@ body {
       scrollbar-width: none;  /* Firefox */
 }
 }
+@media (max-width: 1024px) {
+  .flex {
+    flex-direction: column;
+  }
+}
