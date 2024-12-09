@@ -95,6 +95,12 @@ const CourseContent = () => {
           link: "https://www.youtube.com/embed/wKBu_dEaF9E",
           duration: "53min",
         },
+        {
+          title: "6. Curriculam Document",
+          link: "/Curriculum.pdf",
+          type:"pdf"
+         
+        },
       ],
     },
     {
@@ -193,6 +199,27 @@ const CourseContent = () => {
     }
   };
 
+  const getVideoIcon = (video) => {
+    // Check if it's the Carriculam Document video
+    if (video.title === "6. Curriculam Document") {
+      return "/doc.png"; // Use doc.png for this specific video
+    }
+    return "/youtube.png"; // Default to youtube.png for other videos
+  };
+
+  const VideoPDF = () =>{
+    if (currentVideo.type="pdf"){
+      return(
+        <object
+        data={currentVideo.link}
+        type="application/pdf"
+        className="w-full h-[50vh] lg:h-[80vh]"
+        ></object>
+      )
+    }
+  }
+  
+
   return (
     <div className="flex  overflow-auto">
                 
@@ -260,7 +287,7 @@ const CourseContent = () => {
           )}
         </div>
       </div>
-      <div className=" w-full lg:w-[20%]  bg-white p-0 flex flex-col items-start justify-center border-l-0">
+      <div className=" w-auto lg:w-[20%]  bg-white p-0 flex flex-col items-start justify-center border-l-0">
         {/* Classes Section */}
         <h2 className="text-[22px] font-bold mb-6 text-black pl-5 pt-2">
           Classes
@@ -272,7 +299,7 @@ const CourseContent = () => {
               className="mb-2 min-h-[20px] flex flex-col transition-all duration-300 ease-in-out"
             >
               <div
-                className="p-5 flex justify-between items-center cursor-pointer hover:bg-blue-200"
+                className="p-4 flex justify-between items-center cursor-pointer hover:bg-blue-200"
                 onClick={() => toggleSection(sectionIndex)}
               >
                 <div>
@@ -310,7 +337,7 @@ const CourseContent = () => {
                         </span>
                         <div className="flex items-center space-x-2 mt-1">
                           <img
-                            src="/youtube.png"
+                            src={getVideoIcon(video)}
                             alt="Video Icon"
                             className="h-5 w-5"
                           />
