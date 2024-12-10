@@ -31,7 +31,7 @@ const QuizComponent = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-5 bg-white rounded-lg  mt-2 overflow-auto h-[80vh] no-scrollbar">
+    <div className="max-w-4xl mx-auto p-5 bg-white rounded-lg  mt-2  h-[80vh]">
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
         Quiz
       </h2>
