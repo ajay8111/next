@@ -31,7 +31,7 @@ const QuizComponent = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-5 bg-white rounded-lg  mt-2  h-[80vh]">
+    <div className="max-w-4xl mx-auto p-5 bg-white rounded-lg  mt-2 overflow-auto h-[80vh]">
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
         Quiz
       </h2>
@@ -100,7 +100,7 @@ const QuizComponent = () => {
         <div className="flex items-center space-x-4">
           <button
             onClick={() => alert(`Your score is: ${calculateScore()}`)}
-            className="px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-gray-900 text-sm sm:text-base md:text-lg text-white font-semibold rounded-md hover:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto"
+            className="px-3 py-1 sm:px-4 sm:py-2 md:px-7 md:py-3 bg-gray-900 text-sm sm:text-base md:text-lg text-white font-semibold rounded-md hover:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto"
           >
             Submit
           </button>
