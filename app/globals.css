@@ -41,3 +41,9 @@ body {
     height: 30vh; /* Reduce the height for mobile */
   }
 }
+
+@layer base {
+  input[type="radio"] {
+    accent-color: black; /* Forces the radio button's color to black */
+  }
+}

@@ -5,11 +5,18 @@ import quizData from "./quiz.json";
 
 const QuizComponent = () => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [feedback, setFeedback] = useState({});
 
-  const handleOptionSelect = (questionIndex, optionId) => {
+  const handleOptionSelect = (questionIndex, optionId, correctAnswer) => {
     setSelectedAnswers((prevState) => ({
       ...prevState,
       [questionIndex]: optionId,
+    }));
+
+    // Show real-time feedback
+    setFeedback((prevState) => ({
+      ...prevState,
+      [questionIndex]: optionId === correctAnswer ? "Correct" : "Incorrect",
     }));
   };
 
@@ -24,42 +31,76 @@ const QuizComponent = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-2 bg-white rounded-lg shadow-lg mt-5 overflow-auto h-[80vh] no-scrollbar">
-      <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">Quiz</h2>
+    <div className="max-w-4xl mx-auto p-5 bg-white rounded-lg  mt-2 overflow-auto h-[80vh] no-scrollbar">
+      <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
+        Quiz
+      </h2>
 
       <div className="space-y-6 overflow-y-auto max-h-[60vh] no-scrollbar">
         {quizData.map((question, index) => (
           <div key={index} className="mb-6">
-            <h3 className="text-xl font-medium text-gray-700 mb-1">{question.question}</h3>
+            <h3 className="text-xl font-medium text-gray-700 mb-4">
+              Question {index + 1}: {question.question}
+            </h3>
             <ul className="space-y-3">
               {question.options.map((option, optionIndex) => (
-                <li key={optionIndex} className="flex items-center space-x-3">
+                <li
+                  key={optionIndex}
+                  className={`flex items-center p-3  cursor-pointer border ${
+                    selectedAnswers[index] === option.id
+                      ? "border-gray-900 bg-blue-50"
+                      : "border-gray-300"
+                  } hover:border-black`}
+                  onClick={() =>
+                    handleOptionSelect(index, option.id, question.answer)
+                  }
+                >
                   <input
                     type="radio"
                     name={`question-${index}`}
                     value={option.id}
                     checked={selectedAnswers[index] === option.id}
-                    onChange={() => handleOptionSelect(index, option.id)}
-                    className="h-5 w-5 text-blue-500 focus:ring-2 focus:ring-blue-500"
+                    readOnly
+                    className="h-5 w-5 text-gray-900 focus:ring-black focus:ring-offset-0 focus:ring-1"
                   />
-                  <label className="text-lg text-gray-600">{option.text}</label>
+                  <label
+                    htmlFor={`question-${index}-option-${optionIndex}`}
+                    className="ml-3 text-lg text-gray-700 w-full"
+                  >
+                    {option.text}
+                  </label>
                 </li>
               ))}
             </ul>
+
+            {/* Display real-time feedback */}
+            {selectedAnswers[index] && (
+              <div
+                className={`mt-4 p-3 rounded-lg ${
+                  feedback[index] === "Correct"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-700"
+                }`}
+              >
+                {feedback[index] === "Correct" ? (
+                  <p>✅ Good job! Your answer is correct.</p>
+                ) : (
+                  <p>❌ Incorrect. Try again or review the correct answer.</p>
+                )}
+              </div>
+            )}
           </div>
         ))}
       </div>
 
-      <div className="flex justify-between items-center mt-6">
-        {/* Question Number Display */}
+      <div className="flex justify-between items-center mt-6 mb-6">
         <div className="text-sm font-semibold text-gray-700">
-          Quiz 1 of 1
+          Quiz 1 of {quizData.length}
         </div>
         <div className="flex items-center space-x-4">
-          {/* Next Button */}
           <button
             onClick={() => alert(`Your score is: ${calculateScore()}`)}
-            className="px-8 py-3 bg-blue-500 text-white font-semibold text-lg rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto"
+            className="px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-gray-900 text-sm sm:text-base md:text-lg text-white font-semibold rounded-md hover:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto"
           >
             Submit
           </button>
