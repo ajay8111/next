@@ -94,13 +94,11 @@ const QuizComponent = () => {
       </div>
 
       <div className="flex justify-between items-center mt-6 mb-6">
-        <div className="text-sm font-semibold text-gray-700">
-          Quiz 1 of {quizData.length}
-        </div>
+        <div className="text-sm font-semibold text-gray-700">Quiz 1 of 1</div>
         <div className="flex items-center space-x-4">
           <button
             onClick={() => alert(`Your score is: ${calculateScore()}`)}
-            className="px-3 py-1 sm:px-4 sm:py-2 md:px-7 md:py-3 bg-gray-900 text-sm sm:text-base md:text-lg text-white font-semibold rounded-md hover:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto"
+            className="px-3 py-1 sm:px-4 sm:py-2 md:px-7 md:py-3 bg-gray-900 text-sm sm:text-base md:text-lg text-white font-semibold rounded-md hover:bg-black focus:outline-none  w-full sm:w-auto"
           >
             Submit
           </button>
