@@ -1,0 +1,156 @@
+[
+    {
+      "_id": "5b3d019f5032907208e9b6c3",
+      "question": "She placed a _____ of brightly colored flowers on the table.",
+      "options": [
+        {
+          "count": 0,
+          "id": "A",
+          "text": "deck"
+        },
+        {
+          "count": 0,
+          "id": "B",
+          "text": "set"
+        },
+        {
+          "count": 0,
+          "id": "C",
+          "text": "bouquet"
+        },
+        {
+          "count": 0,
+          "id": "D",
+          "text": "flock"
+        }
+      ],
+      "answer": "C",
+      "description": "bouquet (പൂച്ചെണ്ട്‌).\nflock - we saw a flock of sheep grazing in the fields.",
+      "explanationType": "text",
+      "type": "text"
+    },
+    {
+      "_id": "5c36792c2546324e8101bba5",
+      "question": "This is the spot  _____ the accident took place.",
+      "options": [
+        {
+          "count": 60,
+          "id": "A",
+          "text": "who"
+        },
+        {
+          "count": 103,
+          "id": "B",
+          "text": "which"
+        },
+        {
+          "count": 22,
+          "id": "C",
+          "text": "why"
+        },
+        {
+          "count": 467,
+          "id": "D",
+          "text": "where"
+        }
+      ],
+      "answer": "D",
+      "description": "",
+      "explanationType": "text",
+      "type": "text"
+    },
+    {
+      "_id": "5c36798e2546324e8101bba7",
+      "question": "The gerund form of run is _____",
+      "options": [
+        {
+          "count": 0,
+          "type": "text",
+          "id": "A",
+          "text": "ran"
+        },
+        {
+          "count": 0,
+          "type": "text",
+          "id": "B",
+          "text": "runs"
+        },
+        {
+          "count": 0,
+          "type": "text",
+          "id": "C",
+          "text": "will run"
+        },
+        {
+          "count": 0,
+          "type": "text",
+          "id": "D",
+          "text": "running"
+        }
+      ],
+      "answer": "D",
+      "description": "<ul style=\"color: rgb(255,255,255);\">\n<li>The <strong>gerund </strong>form of \"run\" is \"<strong>running</strong>.\" (run + ing = running)</li>\n<li>A gerund is a verb form that functions as a noun in a sentence, often ending in <strong>\"-ing.\"</strong>/&nbsp; ഒരു വാക്യത്തിലെ നാമമായി പ്രവർത്തിക്കുന്ന ഒരു ക്രിയാ രൂപമാണ് ജെറണ്ട്, \"-ing\" ൽ അവസാനിക്കുന്നു.</li>\n<li>\"ran\" - \"Ran\" is the past tense form of the verb \"run.\"&nbsp;</li>\n<li>\"runs\" - \"Runs\" is the third-person singular present tense form of the verb \"run.\"&nbsp;</li>\n<li>\"will run\" - \"Will run\" is the future tense form of the verb \"run.\"</li>\n</ul>",
+      "explanationType": "html",
+      "type": "text"
+    },
+    {
+      "_id": "5c367a202546324e8101bba8",
+      "question": "The passive form of \"shut the window\" is",
+      "options": [
+        {
+          "count": 1156,
+          "id": "A",
+          "text": "do shut the window "
+        },
+        {
+          "count": 2111,
+          "id": "B",
+          "text": "will shut the window"
+        },
+        {
+          "count": 6332,
+          "id": "C",
+          "text": "let the window be shut"
+        },
+        {
+          "count": 1043,
+          "id": "D",
+          "text": "shut the window soon"
+        }
+      ],
+      "answer": "C",
+      "description": "",
+      "explanationType": "text",
+      "type": "text"
+    },
+    {
+      "_id": "5c367a442546324e8101bba9",
+      "question": "The police _____ vigilant.",
+      "options": [
+        {
+          "count": 5,
+          "id": "A",
+          "text": "is"
+        },
+        {
+          "count": 21,
+          "id": "B",
+          "text": "are"
+        },
+        {
+          "count": 1,
+          "id": "C",
+          "text": "were"
+        },
+        {
+          "count": 0,
+          "id": "D",
+          "text": "was"
+        }
+      ],
+      "answer": "B",
+      "description": "",
+      "explanationType": "text",
+      "type": "text"
+    }
+  ]

@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
+import QuizComponent from './QuizComponent'; // Adjust the path if necessary
+
 
 const CourseContent = () => {
   const [sections, setSections] = useState([
@@ -33,6 +35,12 @@ const CourseContent = () => {
           title: "5. CSS Class & Sections",
           link: "https://www.youtube.com/embed/FHZn6706e3Q",
           duration: "27min",
+        },
+        {
+          title: "Quiz",
+          link: "",
+          duration: "",
+          type: "quiz",
         },
         {
           title: "6. Semantic Elements",
@@ -173,6 +181,7 @@ const CourseContent = () => {
   const [expandedSections, setExpandedSections] = useState([]);
   const [currentVideo, setCurrentVideo] = useState(sections[0].videos[0]);
   const [activeTab, setActiveTab] = useState("overview");
+  const [showQuiz, setShowQuiz] = useState(false);
 
   const toggleSection = (sectionIndex) => {
     setExpandedSections((prev) =>
@@ -183,6 +192,11 @@ const CourseContent = () => {
   };
 
   const selectVideo = (section, video) => {
+    if (video.title == "Quiz") {
+      setShowQuiz(true);
+    } else {
+      setShowQuiz(false);
+    }
     setCurrentVideo(video);
     if (!video.watched) {
       video.watched = true;
@@ -203,6 +217,11 @@ const CourseContent = () => {
     if (video.title === "6. Curriculam Document") {
       return "/docg.png"; // Use doc.png for this specific video
     }
+
+    if (video.title === "Quiz") {
+      return "/ideas.png"; // Use doc.png for this specific video
+    }
+
     return "/youtubeg.png"; // Default to youtube.png for other videos
   };
 
@@ -222,16 +241,19 @@ const CourseContent = () => {
     <div className="flex flex-col lg:flex-row overflow-auto">
       {/* Video Player Section */}
       <div className="w-full lg:w-[80%] bg-white">
-        <div className="overflow-hidden w-full">
-          <iframe
-            className="w-full h-[30vh] sm:h-[40vh] lg:h-[80vh]"
-            src={currentVideo.link}
-            title="Video Player"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
-        </div>
-
+        {showQuiz ? (
+          <QuizComponent />
+        ) : (
+          <div className="overflow-hidden w-full">
+            <iframe
+              className="w-full h-[30vh] sm:h-[40vh] lg:h-[80vh]"
+              src={currentVideo.link}
+              title="Video Player"
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
         {/* Tabs Section */}
         <div className="flex justify-around border-b-2">
           <button
