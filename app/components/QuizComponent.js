@@ -117,7 +117,7 @@ const QuizComponent = () => {
             <div className="space-y-4">
               {/* Feedback box for Correct or Wrong answer */}
               <div
-                className={`p-5 mb-4 ${
+                className={`p-4 sm:p-5 lg:p-6 mb-4  ${
                   feedback[currentQuestionIndex].status === "Correct"
                     ? "bg-green-100 text-black"
                     : "bg-red-100 text-red-700"
@@ -125,31 +125,31 @@ const QuizComponent = () => {
               >
                 {feedback[currentQuestionIndex].status === "Correct" ? (
                   <div>
-                    <h4>
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-lg flex items-center">
                       <strong className="inline-flex items-center">
                         <img
                           src="/rightb.png"
                           alt="Correct"
-                          className="inline-block mr-2 h-4 w-4"
+                          className="inline-block mr-2 h-4 w-4 sm:h-4 sm:w-4 md:h-4 md:w-4"
                         />
                         Correct Answer.
                       </strong>
-                      <span className="ml-2">Good job!</span>
+                      <span className="ml-2 text-sm sm:text-base md:text-lg lg:text-lg ">Good job!</span>
                     </h4>
                   </div>
                 ) : (
                   <div>
-                    <h4>
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-lg">
                       <strong className="inline-flex items-center">
                         <img
                           src="/wrong.png"
                           alt="Wrong"
-                          className="inline-block mr-2 h-4 w-4"
+                          className="inline-block mr-2 h-4 w-4 sm:h-5 sm:w-5 md:h-4 md:w-4"
                         />
-                        Wrong answer
+                        Wrong Answer
                       </strong>
                     </h4>
-                    <p>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg mt-2">
                       Correct answer:{" "}
                       <strong>
                         {
