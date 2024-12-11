@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
-import QuizComponent from './QuizComponent'; 
+import QuizComponent from '../components/QuizComponent'; 
 
 
 

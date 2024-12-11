@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import quizData from "./quiz.json";
+import React, { useState } from "react";
+import quizData from "../data/quiz.json";
 
 const QuizComponent = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -16,7 +16,7 @@ const QuizComponent = () => {
     setSelectedAnswers({});
     setFeedback({});
     setHasAnswered({});
-    setIsQuizFinished(false); // Reset the quiz completion state
+    setIsQuizFinished(false);
   };
 
   // Handle option selection and feedback
@@ -60,13 +60,9 @@ const QuizComponent = () => {
 
   // Calculate score at the end of the quiz
   const calculateScore = () => {
-    let score = 0;
-    quizData.forEach((question, index) => {
-      if (question.answer === selectedAnswers[index]) {
-        score++;
-      }
-    });
-    return score;
+    return quizData.reduce((score, question, index) => {
+      return score + (question.answer === selectedAnswers[index] ? 1 : 0);
+    }, 0);
   };
 
   // Submit the quiz and show results
@@ -108,10 +104,9 @@ const QuizComponent = () => {
         Quiz
       </h2>
       <div className="space-y-6">
-        {/* Feedback Message */}
         {hasAnswered[currentQuestionIndex] && (
           <div
-            className={`p-5  mb-6 ${
+            className={`p-5 mb-6 ${
               feedback[currentQuestionIndex].status === "Correct"
                 ? "bg-green-100 text-black"
                 : "bg-red-100 text-red-700"
@@ -130,13 +125,12 @@ const QuizComponent = () => {
                   </strong>
                 </h4>
                 <p>Your answer is correct.</p>
-                <p className="mt-2">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: feedback[currentQuestionIndex].description,
-                    }}
-                  />
-                </p>
+                <p
+                  className="mt-2"
+                  dangerouslySetInnerHTML={{
+                    __html: feedback[currentQuestionIndex].description,
+                  }}
+                />
               </div>
             ) : (
               <div>
@@ -198,7 +192,7 @@ const QuizComponent = () => {
                   value={option.id}
                   checked={selectedAnswers[currentQuestionIndex] === option.id}
                   readOnly
-                  className="h-5 w-5 text-gray-900 focus:ring-black focus:ring-offset-0 focus:ring-1"
+                  className="h-5 w-5 text-gray-900"
                 />
                 <label
                   htmlFor={`question-${currentQuestionIndex}-option-${optionIndex}`}
