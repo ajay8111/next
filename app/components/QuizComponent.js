@@ -34,7 +34,7 @@ const QuizComponent = () => {
       ...prevState,
       [questionIndex]: {
         status: optionId === correctAnswer ? "Correct" : "Incorrect",
-        description: optionId === correctAnswer ? description : "",
+        description: description,
       },
     }));
 
@@ -104,65 +104,71 @@ const QuizComponent = () => {
         Quiz
       </h2>
       <div className="space-y-6">
-        {hasAnswered[currentQuestionIndex] && (
-          <div
-            className={`p-5 mb-6 ${
-              feedback[currentQuestionIndex].status === "Correct"
-                ? "bg-green-100 text-black"
-                : "bg-red-100 text-red-700"
-            }`}
-          >
-            {feedback[currentQuestionIndex].status === "Correct" ? (
-              <div>
-                <h4>
-                  <strong>
-                    <img
-                      src="/rightb.png"
-                      alt="Correct"
-                      className="inline-block mr-2 h-7 w-7"
-                    />
-                    Good job!
-                  </strong>
-                </h4>
-                <p>Your answer is correct.</p>
-                <p
-                  className="mt-2"
-                  dangerouslySetInnerHTML={{
-                    __html: feedback[currentQuestionIndex].description,
-                  }}
-                />
-              </div>
-            ) : (
-              <div>
-                <h4>
-                  <strong>
-                    <img
-                      src="/wrong.png"
-                      alt="Wrong"
-                      className="inline-block mr-2 h-7 w-7"
-                    />
-                    Wrong answer
-                  </strong>
-                </h4>
-                <p>
-                  The correct answer was:{" "}
-                  <strong>
-                    {
-                      currentQuestion.options.find(
-                        (option) => option.id === currentQuestion.answer
-                      ).text
-                    }
-                  </strong>
-                </p>
-              </div>
-            )}
-          </div>
-        )}
-
         <div>
           <h3 className="text-xl font-medium text-gray-700 mb-4">
             Question {currentQuestionIndex + 1}: {currentQuestion.question}
           </h3>
+          <div className="text-sm font-semibold text-gray-700 mb-4">
+            Question {currentQuestionIndex + 1} of {quizData.length}
+          </div>
+
+          {/* Feedback below the question but before the options */}
+          {hasAnswered[currentQuestionIndex] && (
+            <div
+              className={`p-5 mb-6 ${
+                feedback[currentQuestionIndex].status === "Correct"
+                  ? "bg-green-100 text-black"
+                  : "bg-red-100 text-red-700"
+              }`}
+            >
+              {feedback[currentQuestionIndex].status === "Correct" ? (
+                <div>
+                  <h4>
+                    <strong className="inline-flex items-center">
+                      <img
+                        src="/rightb.png"
+                        alt="Correct"
+                        className="inline-block mr-2 h-4 w-4"
+                      />
+                      Correct Answer.
+                    </strong>
+                    <span className="ml-2">Good job!</span>
+                  </h4>
+                </div>
+              ) : (
+                <div>
+                  <h4>
+                    <strong className="inline-flex items-center">
+                      <img
+                        src="/wrong.png"
+                        alt="Wrong"
+                        className="inline-block mr-2 h-4 w-4"
+                      />
+                      Wrong answer
+                    </strong>
+                  </h4>
+                  <p>
+                    Correct answer:{" "}
+                    <strong>
+                      {
+                        currentQuestion.options.find(
+                          (option) => option.id === currentQuestion.answer
+                        ).text
+                      }
+                    </strong>
+                  </p>
+                </div>
+              )}
+              <p
+                className="mt-2"
+                dangerouslySetInnerHTML={{
+                  __html: feedback[currentQuestionIndex].description,
+                }}
+              />
+            </div>
+          )}
+          
+
           <ul className="space-y-3">
             {currentQuestion.options.map((option, optionIndex) => (
               <li
@@ -204,46 +210,45 @@ const QuizComponent = () => {
             ))}
           </ul>
         </div>
-      </div>
 
-      <div className="flex flex-col sm:flex-row justify-between items-center mt-4 sm:mt-6 mb-4 sm:mb-6 space-y-4 sm:space-y-0">
-        <div className="text-sm font-semibold text-gray-700">
-          Question {currentQuestionIndex + 1} of {quizData.length}
-        </div>
-        <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
-          {currentQuestionIndex > 0 && (
-            <button
-              onClick={moveToPreviousQuestion}
-              className="px-3 py-1 md:px-4 md:py-2 bg-gray-200 text-gray-800 font-semibold  hover:bg-gray-300 text-sm md:text-base"
-            >
-              Previous
-            </button>
-          )}
-          {currentQuestionIndex < quizData.length - 1 ? (
-            <button
-              onClick={moveToNextQuestion}
-              disabled={!hasAnswered[currentQuestionIndex]}
-              className={`px-3 py-1 md:px-4 md:py-2 ${
-                hasAnswered[currentQuestionIndex]
-                  ? "bg-gray-900 text-white hover:bg-black"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
-              } font-semibold  text-sm md:text-base`}
-            >
-              Next
-            </button>
-          ) : (
-            <button
-              onClick={handleSubmit}
-              disabled={!hasAnswered[currentQuestionIndex]}
-              className={`px-3 py-1 md:px-4 md:py-2 ${
-                hasAnswered[currentQuestionIndex]
-                  ? "bg-gray-900 text-white hover:bg-black"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
-              } font-semibold  text-sm md:text-base`}
-            >
-              Submit Quiz
-            </button>
-          )}
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-4 sm:mt-6 mb-4 sm:mb-6 space-y-4 sm:space-y-0">
+          <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
+            {currentQuestionIndex > 0 && (
+              <button
+                onClick={moveToPreviousQuestion}
+                className="px-3 py-1 md:px-4 md:py-2 bg-gray-200 text-gray-800 font-semibold  hover:bg-gray-300 text-sm md:text-base"
+              >
+                Previous
+              </button>
+            )}
+          </div>
+          <div className="flex sm:ml-auto">
+            {currentQuestionIndex < quizData.length - 1 ? (
+              <button
+                onClick={moveToNextQuestion}
+                disabled={!hasAnswered[currentQuestionIndex]}
+                className={`px-3 py-1 md:px-4 md:py-2 ${
+                  hasAnswered[currentQuestionIndex]
+                    ? "bg-gray-900 text-white hover:bg-black"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                } font-semibold  text-sm md:text-base`}
+              >
+                Next
+              </button>
+            ) : (
+              <button
+                onClick={handleSubmit}
+                disabled={!hasAnswered[currentQuestionIndex]}
+                className={`px-3 py-1 md:px-4 md:py-2 ${
+                  hasAnswered[currentQuestionIndex]
+                    ? "bg-gray-900 text-white hover:bg-black"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                } font-semibold  text-sm md:text-base`}
+              >
+                Finish
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
