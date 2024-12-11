@@ -4,20 +4,56 @@ import React, { useState } from "react";
 import quizData from "./quiz.json";
 
 const QuizComponent = () => {
+  const [key, setKey] = useState(0); // State to force remount the component
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [feedback, setFeedback] = useState({});
+  const [hasAnswered, setHasAnswered] = useState({});
+  const [isQuizFinished, setIsQuizFinished] = useState(false);
 
-  const handleOptionSelect = (questionIndex, optionId, correctAnswer) => {
+  const resetQuiz = () => {
+    setKey((prevKey) => prevKey + 1); // Update the key to force remount
+    setCurrentQuestionIndex(0);
+    setSelectedAnswers({});
+    setFeedback({});
+    setHasAnswered({});
+    setIsQuizFinished(false); // Reset the quiz completion state
+  };
+
+  const handleOptionSelect = (optionId, correctAnswer, description) => {
+    const questionIndex = currentQuestionIndex;
+
+    if (hasAnswered[questionIndex]) return;
+
     setSelectedAnswers((prevState) => ({
       ...prevState,
       [questionIndex]: optionId,
     }));
 
-    // Show real-time feedback
     setFeedback((prevState) => ({
       ...prevState,
-      [questionIndex]: optionId === correctAnswer ? "Correct" : "Incorrect",
+      [questionIndex]: {
+        status: optionId === correctAnswer ? "Correct" : "Incorrect",
+        description: optionId === correctAnswer ? description : "",
+      },
     }));
+
+    setHasAnswered((prevState) => ({
+      ...prevState,
+      [questionIndex]: true,
+    }));
+  };
+
+  const moveToNextQuestion = () => {
+    if (currentQuestionIndex < quizData.length - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    }
+  };
+
+  const moveToPreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex((prev) => prev - 1);
+    }
   };
 
   const calculateScore = () => {
@@ -30,78 +66,183 @@ const QuizComponent = () => {
     return score;
   };
 
+  const handleSubmit = () => {
+    setIsQuizFinished(true);
+  };
+
+  if (isQuizFinished) {
+    const score = calculateScore();
+    return (
+      <div className="max-w-2xl mx-auto p-5 bg-white rounded-lg mt-2">
+        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
+          Quiz Results
+        </h2>
+        <div className="text-xl text-center text-gray-700">
+          <p>Total Questions: {quizData.length}</p>
+          <p>Correct Answers: {score}</p>
+          <p>
+            Score: {score} / {quizData.length}
+          </p>
+        </div>
+        <div className="text-center mt-6">
+          <button
+            onClick={resetQuiz}
+            className="px-4 py-2 bg-gray-900 text-white font-semibold rounded-md hover:bg-black"
+          >
+            Retake Quiz
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const currentQuestion = quizData[currentQuestionIndex];
+
   return (
-    <div className="max-w-4xl mx-auto p-5 bg-white rounded-lg  mt-2 overflow-auto h-[80vh]">
+    <div key={key} className="max-w-2xl mx-auto p-5 bg-white rounded-lg mt-2">
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
         Quiz
       </h2>
-
-      <div className="space-y-6 overflow-y-auto max-h-[60vh] no-scrollbar">
-        {quizData.map((question, index) => (
-          <div key={index} className="mb-6">
-            <h3 className="text-xl font-medium text-gray-700 mb-4">
-              Question {index + 1}: {question.question}
-            </h3>
-            <ul className="space-y-3">
-              {question.options.map((option, optionIndex) => (
-                <li
-                  key={optionIndex}
-                  className={`flex items-center p-3  cursor-pointer border ${
-                    selectedAnswers[index] === option.id
-                      ? "border-gray-900 bg-blue-50"
-                      : "border-gray-300"
-                  } hover:border-black`}
-                  onClick={() =>
-                    handleOptionSelect(index, option.id, question.answer)
-                  }
-                >
-                  <input
-                    type="radio"
-                    name={`question-${index}`}
-                    value={option.id}
-                    checked={selectedAnswers[index] === option.id}
-                    readOnly
-                    className="h-5 w-5 text-gray-900 focus:ring-black focus:ring-offset-0 focus:ring-1"
-                  />
-                  <label
-                    htmlFor={`question-${index}-option-${optionIndex}`}
-                    className="ml-3 text-lg text-gray-700 w-full"
-                  >
-                    {option.text}
-                  </label>
-                </li>
-              ))}
-            </ul>
-
-            {/* Display real-time feedback */}
-            {selectedAnswers[index] && (
-              <div
-                className={`mt-4 p-3 rounded-lg ${
-                  feedback[index] === "Correct"
-                    ? "bg-green-100 text-green-700"
-                    : "bg-red-100 text-red-700"
-                }`}
-              >
-                {feedback[index] === "Correct" ? (
-                  <p>✅ Good job! Your answer is correct.</p>
-                ) : (
-                  <p>❌ Incorrect. Try again or review the correct answer.</p>
-                )}
+      <div className="space-y-6">
+        {/* Feedback Message - Good job or Incorrect answer */}
+        {hasAnswered[currentQuestionIndex] && (
+          <div
+            className={`p-5  mb-6 ${
+              feedback[currentQuestionIndex].status === "Correct"
+                ? "bg-green-100 text-black"
+                : "bg-red-100 text-red-700"
+            }`}
+          >
+            {feedback[currentQuestionIndex].status === "Correct" ? (
+              <div>
+                <h4>
+                  <strong>
+                    {" "}
+                    <img
+                      src="/rightb.png"
+                      alt="Correct"
+                      className="inline-block mr-2 h-7 w-7"
+                    />
+                    Good job!
+                  </strong>
+                </h4>
+                <p>Your answer is correct.</p>
+                <p className="mt-2">
+                  {feedback[currentQuestionIndex].description}
+                </p>
+              </div>
+            ) : (
+              <div>
+                <h4>
+                  <strong>
+                    <img
+                      src="/wrong.png"
+                      alt="Wrong"
+                      className="inline-block mr-2 h-7 w-7"
+                    />
+                    Wrong answer
+                  </strong>
+                </h4>
+                <p>
+                  The correct answer was:{" "}
+                  <strong>
+                    {
+                      currentQuestion.options.find(
+                        (option) => option.id === currentQuestion.answer
+                      ).text
+                    }
+                  </strong>
+                </p>
               </div>
             )}
           </div>
-        ))}
+        )}
+
+        <div>
+          <h3 className="text-xl font-medium text-gray-700 mb-4">
+            Question {currentQuestionIndex + 1}: {currentQuestion.question}
+          </h3>
+          <ul className="space-y-3">
+            {currentQuestion.options.map((option, optionIndex) => (
+              <li
+                key={optionIndex}
+                className={`flex items-center p-3 cursor-pointer border ${
+                  hasAnswered[currentQuestionIndex]
+                    ? option.id === currentQuestion.answer
+                      ? "border-green-700 bg-green-100"
+                      : selectedAnswers[currentQuestionIndex] === option.id
+                      ? "border-red-700 bg-red-100"
+                      : "border-gray-300"
+                    : selectedAnswers[currentQuestionIndex] === option.id
+                    ? "border-gray-900 bg-blue-50"
+                    : "border-gray-300"
+                } hover:border-black`}
+                onClick={() =>
+                  handleOptionSelect(
+                    option.id,
+                    currentQuestion.answer,
+                    currentQuestion.description
+                  )
+                }
+              >
+                <input
+                  type="radio"
+                  name={`question-${currentQuestionIndex}`}
+                  value={option.id}
+                  checked={selectedAnswers[currentQuestionIndex] === option.id}
+                  readOnly
+                  className="h-5 w-5 text-gray-900 focus:ring-black focus:ring-offset-0 focus:ring-1"
+                />
+                <label
+                  htmlFor={`question-${currentQuestionIndex}-option-${optionIndex}`}
+                  className="ml-3 text-lg text-gray-700 w-full"
+                >
+                  {option.text}
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <div className="flex justify-between items-center mt-6 mb-6">
-        <div className="text-sm font-semibold text-gray-700">Quiz 1 of 1</div>
+        <div className="text-sm font-semibold text-gray-700">
+          Question {currentQuestionIndex + 1} of {quizData.length}
+        </div>
         <div className="flex items-center space-x-4">
-          <button
-            onClick={() => alert(`Your score is: ${calculateScore()}`)}
-            className="px-3 py-1 sm:px-4 sm:py-2 md:px-7 md:py-3 bg-gray-900 text-sm sm:text-base md:text-lg text-white font-semibold rounded-md hover:bg-black focus:outline-none  w-full sm:w-auto"
-          >
-            Submit
-          </button>
+          {currentQuestionIndex > 0 && (
+            <button
+              onClick={moveToPreviousQuestion}
+              className="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-md hover:bg-gray-300"
+            >
+              Previous
+            </button>
+          )}
+          {currentQuestionIndex < quizData.length - 1 ? (
+            <button
+              onClick={moveToNextQuestion}
+              disabled={!hasAnswered[currentQuestionIndex]}
+              className={`px-4 py-2 ${
+                hasAnswered[currentQuestionIndex]
+                  ? "bg-gray-900 text-white hover:bg-black"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              } font-semibold rounded-md`}
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              onClick={handleSubmit}
+              disabled={!hasAnswered[currentQuestionIndex]}
+              className={`px-4 py-2 ${
+                hasAnswered[currentQuestionIndex]
+                  ? "bg-gray-900 text-white hover:bg-black"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              } font-semibold rounded-md`}
+            >
+              Finish
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
-import QuizComponent from './QuizComponent'; // Adjust the path if necessary
+import QuizComponent from './QuizComponent'; 
+
 
 
 const CourseContent = () => {
@@ -286,11 +287,8 @@ const CourseContent = () => {
                 {currentVideo.title}
               </h3>
               <p className="text-lg">
-                This section contains a detailed description of the video. Able
-                to customize this content to provide additional context about
-                the topic. This section contains a detailed description of the
-                video. Able to customize this content to provide additional
-                context about the topic.
+                {currentVideo.title=="Quiz" ? "This is a simple Quiz with each right answers give 1 score." :
+                "This section contains a detailed description of the video"}
               </p>
             </div>
           )}
