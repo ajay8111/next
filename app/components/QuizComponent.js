@@ -139,7 +139,7 @@ const QuizComponent = () => {
                   </div>
                 ) : (
                   <div>
-                    <h4 className="text-sm sm:text-base md:text-lg lg:text-lg">
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-lg flex items-center">
                       <strong className="inline-flex items-center">
                         <img
                           src="/wrong.png"
@@ -149,7 +149,7 @@ const QuizComponent = () => {
                         Wrong Answer
                       </strong>
                     </h4>
-                    <p className="text-xs sm:text-sm md:text-base lg:text-lg mt-2">
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg mt-2 flex items-center">
                       Correct answer:{" "}
                       <strong>
                         {
