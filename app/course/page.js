@@ -300,7 +300,7 @@ const CourseContent = () => {
                 placeholder="Write your notes here..."
               /> */}
               <p className="text-lg">
-                This section contains notes related to the video. Able to
+                No notes related to the video avilable right now. Able to
                 customize this content.
               </p>
             </div>

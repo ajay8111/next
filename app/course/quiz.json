@@ -55,7 +55,7 @@
         }
       ],
       "answer": "D",
-      "description": "",
+      "description": "The word \"where\" is used to refer to the place where something happened. ",
       "explanationType": "text",
       "type": "text"
     },
@@ -89,7 +89,7 @@
         }
       ],
       "answer": "D",
-      "description": "<ul style=\"color: rgb(255,255,255);\">\n<li>The <strong>gerund </strong>form of \"run\" is \"<strong>running</strong>.\" (run + ing = running)</li>\n<li>A gerund is a verb form that functions as a noun in a sentence, often ending in <strong>\"-ing.\"</strong>/&nbsp; ഒരു വാക്യത്തിലെ നാമമായി പ്രവർത്തിക്കുന്ന ഒരു ക്രിയാ രൂപമാണ് ജെറണ്ട്, \"-ing\" ൽ അവസാനിക്കുന്നു.</li>\n<li>\"ran\" - \"Ran\" is the past tense form of the verb \"run.\"&nbsp;</li>\n<li>\"runs\" - \"Runs\" is the third-person singular present tense form of the verb \"run.\"&nbsp;</li>\n<li>\"will run\" - \"Will run\" is the future tense form of the verb \"run.\"</li>\n</ul>",
+      "description": "<ul style=\"color: rgb(0,0,0;\">\n<li>The <strong>gerund </strong>form of \"run\" is \"<strong>running</strong>.\" (run + ing = running)</li>\n<li>A gerund is a verb form that functions as a noun in a sentence, often ending in <strong>\"ing.\"</strong>&nbsp; ഒരു വാക്യത്തിലെ നാമമായി പ്രവർത്തിക്കുന്ന ഒരു ക്രിയാ രൂപമാണ് ജെറണ്ട്, \"-ing\" ൽ അവസാനിക്കുന്നു.</li>\n<li>\"ran\" - \"Ran\" is the past tense form of the verb \"run.\"&nbsp;</li>\n<li>\"runs\" - \"Runs\" is the third-person singular present tense form of the verb \"run.\"&nbsp;</li>\n<li>\"will run\" - \"Will run\" is the future tense form of the verb \"run.\"</li>\n</ul>",
       "explanationType": "html",
       "type": "text"
     },
@@ -119,7 +119,7 @@
         }
       ],
       "answer": "C",
-      "description": "",
+      "description": "In the passive voice, the subject of the sentence (in this case, \"the window\") becomes the receiver of the action, and the focus shifts from the doer of the action to the action itself.",
       "explanationType": "text",
       "type": "text"
     },
@@ -149,7 +149,7 @@
         }
       ],
       "answer": "B",
-      "description": "",
+      "description": "The word \"police\" is a plural noun, even though it may seem singular due to the fact that it refers to a single organization or force",
       "explanationType": "text",
       "type": "text"
     }

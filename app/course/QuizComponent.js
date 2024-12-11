@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import quizData from "./quiz.json";
 
 const QuizComponent = () => {
-  const [key, setKey] = useState(0); // State to force remount the component
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [feedback, setFeedback] = useState({});
   const [hasAnswered, setHasAnswered] = useState({});
   const [isQuizFinished, setIsQuizFinished] = useState(false);
 
+  // Reset quiz to initial state
   const resetQuiz = () => {
-    setKey((prevKey) => prevKey + 1); // Update the key to force remount
     setCurrentQuestionIndex(0);
     setSelectedAnswers({});
     setFeedback({});
@@ -20,6 +19,7 @@ const QuizComponent = () => {
     setIsQuizFinished(false); // Reset the quiz completion state
   };
 
+  // Handle option selection and feedback
   const handleOptionSelect = (optionId, correctAnswer, description) => {
     const questionIndex = currentQuestionIndex;
 
@@ -44,18 +44,21 @@ const QuizComponent = () => {
     }));
   };
 
+  // Navigate to the next question
   const moveToNextQuestion = () => {
     if (currentQuestionIndex < quizData.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
 
+  // Navigate to the previous question
   const moveToPreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
 
+  // Calculate score at the end of the quiz
   const calculateScore = () => {
     let score = 0;
     quizData.forEach((question, index) => {
@@ -66,6 +69,7 @@ const QuizComponent = () => {
     return score;
   };
 
+  // Submit the quiz and show results
   const handleSubmit = () => {
     setIsQuizFinished(true);
   };
@@ -99,12 +103,12 @@ const QuizComponent = () => {
   const currentQuestion = quizData[currentQuestionIndex];
 
   return (
-    <div key={key} className="max-w-2xl mx-auto p-5 bg-white rounded-lg mt-2">
+    <div className="max-w-2xl mx-auto p-5 bg-white rounded-lg mt-2">
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
         Quiz
       </h2>
       <div className="space-y-6">
-        {/* Feedback Message - Good job or Incorrect answer */}
+        {/* Feedback Message */}
         {hasAnswered[currentQuestionIndex] && (
           <div
             className={`p-5  mb-6 ${
@@ -117,7 +121,6 @@ const QuizComponent = () => {
               <div>
                 <h4>
                   <strong>
-                    {" "}
                     <img
                       src="/rightb.png"
                       alt="Correct"
@@ -128,7 +131,11 @@ const QuizComponent = () => {
                 </h4>
                 <p>Your answer is correct.</p>
                 <p className="mt-2">
-                  {feedback[currentQuestionIndex].description}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: feedback[currentQuestionIndex].description,
+                    }}
+                  />
                 </p>
               </div>
             ) : (
@@ -240,7 +247,7 @@ const QuizComponent = () => {
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
               } font-semibold rounded-md`}
             >
-              Finish
+              Submit Quiz
             </button>
           )}
         </div>
