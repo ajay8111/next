@@ -206,15 +206,15 @@ const QuizComponent = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center mt-6 mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-center mt-4 sm:mt-6 mb-4 sm:mb-6 space-y-4 sm:space-y-0">
         <div className="text-sm font-semibold text-gray-700">
           Question {currentQuestionIndex + 1} of {quizData.length}
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
           {currentQuestionIndex > 0 && (
             <button
               onClick={moveToPreviousQuestion}
-              className="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-md hover:bg-gray-300"
+              className="px-3 py-1 md:px-4 md:py-2 bg-gray-200 text-gray-800 font-semibold  hover:bg-gray-300 text-sm md:text-base"
             >
               Previous
             </button>
@@ -223,11 +223,11 @@ const QuizComponent = () => {
             <button
               onClick={moveToNextQuestion}
               disabled={!hasAnswered[currentQuestionIndex]}
-              className={`px-4 py-2 ${
+              className={`px-3 py-1 md:px-4 md:py-2 ${
                 hasAnswered[currentQuestionIndex]
                   ? "bg-gray-900 text-white hover:bg-black"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
-              } font-semibold rounded-md`}
+              } font-semibold  text-sm md:text-base`}
             >
               Next
             </button>
@@ -235,11 +235,11 @@ const QuizComponent = () => {
             <button
               onClick={handleSubmit}
               disabled={!hasAnswered[currentQuestionIndex]}
-              className={`px-4 py-2 ${
+              className={`px-3 py-1 md:px-4 md:py-2 ${
                 hasAnswered[currentQuestionIndex]
                   ? "bg-gray-900 text-white hover:bg-black"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
-              } font-semibold rounded-md`}
+              } font-semibold  text-sm md:text-base`}
             >
               Submit Quiz
             </button>
