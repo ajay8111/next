@@ -114,66 +114,72 @@ const QuizComponent = () => {
 
           {/* Feedback below the question but before the options */}
           {hasAnswered[currentQuestionIndex] && (
-            <div
-              className={`p-5 mb-6 ${
-                feedback[currentQuestionIndex].status === "Correct"
-                  ? "bg-green-100 text-black"
-                  : "bg-red-100 text-red-700"
-              }`}
-            >
-              {feedback[currentQuestionIndex].status === "Correct" ? (
-                <div>
-                  <h4>
-                    <strong className="inline-flex items-center">
-                      <img
-                        src="/rightb.png"
-                        alt="Correct"
-                        className="inline-block mr-2 h-4 w-4"
-                      />
-                      Correct Answer.
-                    </strong>
-                    <span className="ml-2">Good job!</span>
-                  </h4>
-                </div>
-              ) : (
-                <div>
-                  <h4>
-                    <strong className="inline-flex items-center">
-                      <img
-                        src="/wrong.png"
-                        alt="Wrong"
-                        className="inline-block mr-2 h-4 w-4"
-                      />
-                      Wrong answer
-                    </strong>
-                  </h4>
-                  <p>
-                    Correct answer:{" "}
-                    <strong>
-                      {
-                        currentQuestion.options.find(
-                          (option) => option.id === currentQuestion.answer
-                        ).text
-                      }
-                    </strong>
-                  </p>
-                </div>
-              )}
-              <p
-                className="mt-2"
-                dangerouslySetInnerHTML={{
-                  __html: feedback[currentQuestionIndex].description,
-                }}
-              />
+            <div className="space-y-4">
+              {/* Feedback box for Correct or Wrong answer */}
+              <div
+                className={`p-5 mb-4 ${
+                  feedback[currentQuestionIndex].status === "Correct"
+                    ? "bg-green-100 text-black"
+                    : "bg-red-100 text-red-700"
+                }`}
+              >
+                {feedback[currentQuestionIndex].status === "Correct" ? (
+                  <div>
+                    <h4>
+                      <strong className="inline-flex items-center">
+                        <img
+                          src="/rightb.png"
+                          alt="Correct"
+                          className="inline-block mr-2 h-4 w-4"
+                        />
+                        Correct Answer.
+                      </strong>
+                      <span className="ml-2">Good job!</span>
+                    </h4>
+                  </div>
+                ) : (
+                  <div>
+                    <h4>
+                      <strong className="inline-flex items-center">
+                        <img
+                          src="/wrong.png"
+                          alt="Wrong"
+                          className="inline-block mr-2 h-4 w-4"
+                        />
+                        Wrong answer
+                      </strong>
+                    </h4>
+                    <p>
+                      Correct answer:{" "}
+                      <strong>
+                        {
+                          currentQuestion.options.find(
+                            (option) => option.id === currentQuestion.answer
+                          ).text
+                        }
+                      </strong>
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* New box for description with fixed margin */}
+              <div className="p-5 bg-gray-100 border border-gray-300">
+                <p
+                  className="text-gray-700"
+                  dangerouslySetInnerHTML={{
+                    __html: feedback[currentQuestionIndex].description,
+                  }}
+                />
+              </div>
             </div>
           )}
-          
 
-          <ul className="space-y-3">
+          <ul className="mt-4 space-y-3">
             {currentQuestion.options.map((option, optionIndex) => (
               <li
                 key={optionIndex}
-                className={`flex items-center p-3 cursor-pointer border ${
+                className={`flex items-center p-2 sm:p-3 lg:p-4 cursor-pointer border ${
                   hasAnswered[currentQuestionIndex]
                     ? option.id === currentQuestion.answer
                       ? "border-green-700 bg-green-100"
@@ -198,11 +204,11 @@ const QuizComponent = () => {
                   value={option.id}
                   checked={selectedAnswers[currentQuestionIndex] === option.id}
                   readOnly
-                  className="h-5 w-5 text-gray-900"
+                  className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-4 lg:w-4 text-gray-900"
                 />
                 <label
                   htmlFor={`question-${currentQuestionIndex}-option-${optionIndex}`}
-                  className="ml-3 text-lg text-gray-700 w-full"
+                  className="ml-2 sm:ml-3 text-sm sm:text-base md:text-lg lg:text-lg text-gray-700 w-full"
                 >
                   {option.text}
                 </label>
