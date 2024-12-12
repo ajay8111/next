@@ -91,24 +91,101 @@ export default function Home() {
       details: { total: 6, watched: 0 },
       videos: [
         {
-          title: "1. Modern JS Intro & Setup",
+          title: "Modern JS Intro & Setup",
           link: "https://www.youtube.com/embed/iWOYAxlnaww",
           duration: "12min",
         },
         {
-          title: "2. Modern JS Syntax Basics & Types",
+          title: "Modern JS Syntax Basics & Types",
           link: "https://www.youtube.com/embed/FhguwBJeqWs",
           duration: "1hr24min",
         },
         {
-          title: "3. Modern JS Loops & Conditionals",
+          title: "Modern JS Loops & Conditionals",
           link: "https://www.youtube.com/embed/JloLGV9DmtQ",
           duration: "53min",
         },
         {
-          title: "4. Modern JS Objects",
+          title: "Modern JS JavaScript & DOM",
+          link: "https://www.youtube.com/embed/wKBu_dEaF9E",
+          duration: "53min",
+        },
+        {
+          title: "Modern JS Objects",
           link: "https://www.youtube.com/embed/X0ipw1k7ygU",
           duration: "37min",
+        },
+        {
+          title: "Curriculam Document",
+          link: "/Curriculum.pdf",
+          type: "pdf",
+        },
+      ],
+    },
+
+    {
+      name: "Section 3: Introduction to Nodejs",
+      details: { total: 6, watched: 0 },
+      videos: [
+        {
+          title: "Introduction Node.js",
+          link: "https://www.youtube.com/embed/zb3Qk8SG5Ms",
+          duration: "17min",
+        },
+        {
+          title: "Basics",
+          link: "https://www.youtube.com/embed/OIBIXYLJjsI",
+          duration: "42min",
+        },
+        {
+          title: "Client & Servers",
+          link: "https://www.youtube.com/embed/-HPZ1leCV8k",
+          duration: "13min",
+        },
+        {
+          title: "Request & Responses",
+          link: "https://www.youtube.com/embed/DQD00NAUPNk",
+          duration: "26min",
+        },
+        {
+          title: "NPM",
+          link: "https://www.youtube.com/embed/bdHE2wHT-gQs",
+          duration: "16min",
+        },
+        {
+          title: "Express App",
+          link: "https://www.youtube.com/embed/Lr9WUkeYSA8",
+          duration: "19min",
+        },
+        {
+          title: "Templates",
+          link: "https://www.youtube.com/embed/yXEesONd_54",
+          duration: "35min",
+        },
+        {
+          title: "Middleware & Static Files",
+          link: "https://www.youtube.com/embed/_GJKAs7A0_4",
+          duration: "16min",
+        },
+        {
+          title: "MongoDB & Mongoose",
+          link: "https://www.youtube.com/embed/bxsemcrY4gQ",
+          duration: "36min",
+        },
+        {
+          title: "Get, Post & Delete Requests",
+          link: "https://www.youtube.com/embed/VVGgacjzc2Y",
+          duration: "33min",
+        },
+        {
+          title: "Express Router & MVC",
+          link: "https://www.youtube.com/embed/zW_tZR0Ir3Q",
+          duration: "22min",
+        },
+        {
+          title: "Next Steps",
+          link: "https://www.youtube.com/embed/nYAyhRAV87A",
+          duration: "4min",
         },
       ],
     },
@@ -120,7 +197,7 @@ export default function Home() {
         <div className="max-w-[960px] mx-auto">
           {" "}
           {/* Wrapper for max width */}
-          <nav className="flex items-center ml-20 text-gray-300 space-x-2 text-lg">
+          <nav className="hidden sm:flex items-center md:ml lg:ml text-gray-300 space-x-2 text-lg">
             <a href="#" className="text-blue-950 hover:underline">
               Development
             </a>
@@ -138,10 +215,10 @@ export default function Home() {
 
       {/* Title Section */}
       <div className="bg-blue-200 border-gray-300 shadow-lg w-full mx-auto p-5 mb-8 relative">
-        <div className="max-w-[960px] mx-auto">
+        <div className="max-w-full sm:max-w-[960px] mx-auto">
           {" "}
           {/* Wrapper for max width */}
-          <div className="ml-20">
+          <div className="ml">
             <h1 className="text-3xl md:text-4xl font-bold text-blue-950">
               HTML and CSS
             </h1>
@@ -150,13 +227,12 @@ export default function Home() {
               and Quizzes.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4 mt-4 text-sm md:text-base text-gray-500 ml-20">
-            <span>Mentor by</span>
-            <span>John M</span>
+          <div className="flex flex-wrap items-center gap-4 mt-4 text-sm md:text-base text-gray-500 ml-4">
+            <span>Mentor by John M</span>
           </div>
           <button
             onClick={handleButtonClick}
-            className="mt-6 px-6 py-3 ml-20 bg-purple-600 text-white text-sm md:text-base font-semibold  hover:bg-purple-700 transition focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="mt-6 px-6 py-3 ml bg-purple-600 text-white text-sm md:text-base font-semibold  hover:bg-purple-700 transition focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             Go to Course
           </button>
@@ -164,13 +240,10 @@ export default function Home() {
       </div>
 
       {/* Main Content Section with Center and Right Columns */}
-      <div
-        id="wrap"
-        className="w-full mx-auto max-w-[960px] p-5 flex flex-wrap"
-      >
+      <div id="wrap" className="w-full mx-auto max-w-[960px]  flex ">
         {/* Center Column Content */}
         <div id="center-column" className="w-full md:w-2/3">
-          <div className=" w-full p-4 border">
+          <div className=" w-full p-4 border-2">
             <div className="text-xl font-bold text-gray-800 mb-6">
               Course Content
             </div>
@@ -189,7 +262,7 @@ export default function Home() {
                 <div key={index}>
                   <button
                     onClick={() => toggleDropdown(index)}
-                    className="w-full text-left flex items-center justify-between text-gray-800 text-xl font-semibold py-4 px-6 border border-gray-300"
+                    className="w-full text-left flex items-center justify-between text-gray-800 text-sm sm:text-base md:text-lg font-semibold py-3 sm:py-4 px-4 sm:px-6 border border-gray-300"
                   >
                     <span>{section.name}</span>
                     <svg
@@ -234,6 +307,17 @@ export default function Home() {
                               </span>{" "}
                               {/* Add "Document" text */}
                             </>
+                          ) : video.title === "Curriculam Document" ? (
+                            <>
+                              <img
+                                src="/doc.png" // Show doc.png for "Curriculam Document"
+                                alt="Document Icon"
+                                className="w-5 h-5" // Adjust size as needed
+                              />
+                              <span className="text-gray-700">
+                                Document attached
+                              </span>
+                            </>
                           ) : (
                             <>
                               <img
@@ -257,6 +341,17 @@ export default function Home() {
               ))}
             </div>
           </div>
+          <div class="w-full p-4 sm:p-6 md:p-8 text-gray-800 mb-6 border-t border-b border-gray-300 text-sm sm:text-base md:text-lg">
+            <div class="text-xl font-bold">Requirement</div>
+            <ul class="list-disc list-inside text-sm sm:text-base md:text-lg text-gray-800 mt-2 sm:mt-4 md:mt-6 space-y-2 sm:space-y-3 md:space-y-4">
+              <li>
+                We've got you covered whether you have a Mac or a
+                PC.
+              </li>
+              <li>Prepare to write thousands of lines of Python exercises!</li>
+              <li>No previous experience with Python or coding is required.</li>
+            </ul>
+          </div>
         </div>
 
         {/* Right Column with Video and Details */}
@@ -264,7 +359,7 @@ export default function Home() {
           id="right-column"
           className="w-full sm:w-[calc(50%-20px)] md:w-[calc(33.33%-20px)] lg:w-[calc(25%-20px)] p-4 flex-grow absolute top-0 right-0 lg:right-20 mt-8"
         >
-          <div className="bg-white p-3 shadow-md">
+          <div className="hidden sm:block bg-white p-3 shadow-md fixed top-4 right-10 z-50">
             <iframe
               className="w-full aspect-video shadow-lg"
               src="https://www.youtube.com/embed/hu-q2zYwEYs"
@@ -323,7 +418,7 @@ export default function Home() {
                   </div>
                   <span className="ml-auto">English</span>
                 </li>
-                <li className="flex items-center space-x-2 justify-between border-l">
+                <li className="flex items-center space-x-2 justify-between border-b">
                   <a
                     href="#"
                     className="flex items-start space-x-2 p-4 text-blue-600 hover:text-blue-800"
