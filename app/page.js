@@ -212,15 +212,15 @@ export default function Home() {
         <div className="max-w-[960px] mx-auto">
           {" "}
           {/* Wrapper for max width */}
-          <nav className="hidden sm:flex items-center md:ml lg:ml text-gray-300 space-x-2 text-lg">
+          <nav className="hidden sm:flex items-center md:ml lg:ml text-gray-300 space-x-2 text-base font-semibold">
             <a href="#" className="text-blue-950 hover:underline">
               Development
             </a>
-            <span className="text-gray-500">|</span>
+            <span className="text-gray-500">&gt;</span>
             <a href="#" className="text-blue-950 hover:underline">
               Programming Languages
             </a>
-            <span className="text-gray-500">|</span>
+            <span className="text-gray-500">&gt;</span>
             <a href="#" className="text-blue-950 hover:underline">
               Web Development
             </a>
@@ -429,9 +429,9 @@ export default function Home() {
           id="right-column"
           className="w-full sm:w-[calc(50%-20px)] md:w-[calc(33.33%-20px)] lg:w-[calc(25%-20px)] p-4 flex-grow absolute top-0 right-0 lg:right-20 mt-8"
         >
-          <div className="hidden sm:block bg-white p-3 shadow-md fixed top-4 right-40 z-50">
+          <div className="hidden sm:block bg-white border rounded-lg p-4 shadow-md fixed top-4 right-40 z-50">
             <iframe
-              className="w-full aspect-video shadow-lg"
+              className="w-full aspect-video shadow-lg rounded-lg"
               src="https://www.youtube.com/embed/hu-q2zYwEYs"
               title="The Modern Python 3 Bootcamp"
               frameBorder="0"
@@ -443,7 +443,7 @@ export default function Home() {
             </p>
 
             {/* Enroll Button */}
-            <button className="mt-4 w-full px-6 py-3 rounded-md bg-green-500 text-white text-sm font-semibold shadow hover:bg-green-600 transition focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <button className="mt-4 w-full px-6 py-3 rounded-lg bg-green-500 text-white text-sm font-semibold shadow hover:bg-green-600 transition focus:outline-none focus:ring-2 focus:ring-purple-500">
               Enroll
             </button>
 
