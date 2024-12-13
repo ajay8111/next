@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Button from "./components/Button";
 
 export default function Home() {
   const router = useRouter();
@@ -9,6 +10,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [videoSrc, setVideoSrc] = useState("");
   const [areAllExpanded, setAreAllExpanded] = useState(false); // Track "Expand All" state
+  const [isScrollButtonVisible, setIsScrollButtonVisible] = useState(false);
 
   const handleButtonClick = () => {
     router.push("/course");
@@ -42,6 +44,19 @@ export default function Home() {
     }
     setAreAllExpanded(!areAllExpanded); // Toggle state
   };
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrollButtonVisible(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const courseContent = [
     {
@@ -193,7 +208,7 @@ export default function Home() {
 
   return (
     <div className="bg-white min-h-screen flex flex-col overflow-y-auto">
-      <div className="bg-blue-200 text-sm p-5">
+      <div className="bg-blue-50 text-sm p-5">
         <div className="max-w-[960px] mx-auto">
           {" "}
           {/* Wrapper for max width */}
@@ -214,7 +229,7 @@ export default function Home() {
       </div>
 
       {/* Title Section */}
-      <div className="bg-blue-200 border-gray-300 shadow-lg w-full mx-auto p-5 mb-8 relative">
+      <div className="bg-blue-50 border-gray-300 shadow-sm w-full mx-auto p-5 mb-8 relative">
         <div className="max-w-full sm:max-w-[960px] mx-auto">
           {" "}
           {/* Wrapper for max width */}
@@ -230,12 +245,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-4 mt-4 text-sm md:text-base text-gray-500 ml-">
             <span>Mentor by John M</span>
           </div>
-          <button
-            onClick={handleButtonClick}
-            className="mt-6 px-6 py-3 ml bg-blue-600 text-white text-sm md:text-base font-semibold  hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-purple-500"
-          >
-            Go to Course
-          </button>
+          <Button onClick={handleButtonClick}>Go to Course</Button>
         </div>
       </div>
 
@@ -251,7 +261,7 @@ export default function Home() {
               3 Sections. 78 lectures
               <button
                 onClick={toggleAllSections}
-                className="text-blue-600 hover:text-blue-800 text-sm font-semibold"
+                className="text-blue-400 hover:text-blue-600 text-sm "
               >
                 {areAllExpanded ? "Collapse All" : "Expand All"}
               </button>
@@ -388,6 +398,30 @@ export default function Home() {
               mentor in the field.
             </p>
           </div>
+          {isScrollButtonVisible && (
+            <button
+              onClick={scrollToTop}
+              id="back_to_top"
+              type="button"
+              className="fixed bottom-5 right-5 bg-gray-700 text-white p-3 rounded-full shadow-lg hover:bg-black transition-transform transform hover:scale-110"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 6L6 1L1 6"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          )}
         </div>
 
         {/* Right Column with Video and Details */}
@@ -409,7 +443,7 @@ export default function Home() {
             </p>
 
             {/* Enroll Button */}
-            <button className="mt-4 w-full px-6 py-3 bg-blue-600 text-white text-sm font-semibold shadow hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <button className="mt-4 w-full px-6 py-3 rounded-md bg-green-500 text-white text-sm font-semibold shadow hover:bg-green-600 transition focus:outline-none focus:ring-2 focus:ring-purple-500">
               Enroll
             </button>
 
