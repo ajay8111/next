@@ -192,7 +192,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="bg-gray-100  min-h-screen flex flex-col overflow-y-auto">
+    <div className="bg-white min-h-screen flex flex-col overflow-y-auto">
       <div className="bg-blue-200 text-sm p-5">
         <div className="max-w-[960px] mx-auto">
           {" "}
@@ -227,12 +227,12 @@ export default function Home() {
               and Quizzes.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4 mt-4 text-sm md:text-base text-gray-500 ml-4">
+          <div className="flex flex-wrap items-center gap-4 mt-4 text-sm md:text-base text-gray-500 ml-">
             <span>Mentor by John M</span>
           </div>
           <button
             onClick={handleButtonClick}
-            className="mt-6 px-6 py-3 ml bg-purple-600 text-white text-sm md:text-base font-semibold  hover:bg-purple-700 transition focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="mt-6 px-6 py-3 ml bg-blue-600 text-white text-sm md:text-base font-semibold  hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             Go to Course
           </button>
@@ -341,16 +341,52 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div class="w-full p-4 sm:p-6 md:p-8 text-gray-800 mb-6 border-t border-b border-gray-300 text-sm sm:text-base md:text-lg">
-            <div class="text-xl font-bold">Requirement</div>
-            <ul class="list-disc list-inside text-sm sm:text-base md:text-lg text-gray-800 mt-2 sm:mt-4 md:mt-6 space-y-2 sm:space-y-3 md:space-y-4">
-              <li>
-                We've got you covered whether you have a Mac or a
-                PC.
-              </li>
+          <div className="w-full p-4 sm:p-6 md:p-8 text-gray-800 mb-6   border-gray-300 text-sm sm:text-base md:text-lg">
+            <div className="text-xl font-bold text-gray-800 mb-6">
+              Requirement
+            </div>
+            <ul className="list-disc list-inside text-sm sm:text-base md:text-lg text-gray-800 mt-2 sm:mt-4 md:mt-6 space-y-2 sm:space-y-3 md:space-y-4">
+              <li>We've got you covered whether you have a Mac or a PC.</li>
               <li>Prepare to write thousands of lines of Python exercises!</li>
               <li>No previous experience with Python or coding is required.</li>
             </ul>
+          </div>
+          <div className="w-full p-4 sm:p-6 md:p-8 text-gray-800 mb-6  border-gray-300 text-sm sm:text-base md:text-lg">
+            <div className="text-xl font-bold text-gray-800 mb-6">
+              Instructor
+            </div>
+            <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+              {/* Profile image */}
+              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-20 lg:h-20 rounded-full overflow-hidden">
+                <img
+                  src="profile.jpg"
+                  alt="Instructor Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Instructor's name and subtitle on the right */}
+              <div className="flex flex-col items-start sm:items-start md:items-start lg:items-start xl:items-start space-y-2">
+                <div className="text-lg font-semibold text-blue-600 underline">
+                  John M
+                </div>
+                <div className="text-gray-600 text-sm">
+                  Developer and Instructor
+                </div>
+              </div>
+            </div>
+            {/* Description below the name and subtitle */}
+            <p className="text-gray-700 w-full mt-4 text-sm sm:text-base md:text-lg">
+              John is an experienced mentor specializing in web development.
+              With years of expertise in crafting dynamic websites and
+              applications, he guides learners in mastering modern web
+              technologies. His approach focuses on hands-on learning,
+              real-world projects, and staying up-to-date with industry trends.
+              John has helped countless students transition into successful web
+              development careers, emphasizing the importance of problem-solving
+              and efficient coding practices. His passion for teaching and
+              creating innovative web solutions makes him a highly sought-after
+              mentor in the field.
+            </p>
           </div>
         </div>
 
@@ -359,7 +395,7 @@ export default function Home() {
           id="right-column"
           className="w-full sm:w-[calc(50%-20px)] md:w-[calc(33.33%-20px)] lg:w-[calc(25%-20px)] p-4 flex-grow absolute top-0 right-0 lg:right-20 mt-8"
         >
-          <div className="hidden sm:block bg-white p-3 shadow-md fixed top-4 right-10 z-50">
+          <div className="hidden sm:block bg-white p-3 shadow-md fixed top-4 right-40 z-50">
             <iframe
               className="w-full aspect-video shadow-lg"
               src="https://www.youtube.com/embed/hu-q2zYwEYs"
@@ -373,7 +409,7 @@ export default function Home() {
             </p>
 
             {/* Enroll Button */}
-            <button className="mt-4 w-full px-6 py-3 bg-purple-600 text-white text-sm font-semibold shadow hover:bg-purple-700 transition focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <button className="mt-4 w-full px-6 py-3 bg-blue-600 text-white text-sm font-semibold shadow hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-purple-500">
               Enroll
             </button>
 
@@ -382,9 +418,9 @@ export default function Home() {
               <h3 className="text-xl font-semibold text-gray-800">
                 This Course includes:
               </h3>
-              <ul className="text-gray-600 mt-2 space-y-2">
-                <li className="flex items-center space-x-2 justify-between border-b">
-                  <div className="flex items-start space-x-2 p-4">
+              <ul className="text-gray-600 mt-2 space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5">
+                <li className="flex items-center space-x-2 justify-between border-b sm:space-x-3 md:space-x-4 lg:space-x-5">
+                  <div className="flex items-start space-x-2 p-4 sm:space-x-2 md:space-x-2 lg:space-x-2 sm:p-4 md:p-4 lg:p-4">
                     <img
                       src="/youtube.png"
                       alt="YouTube Icon"
@@ -396,7 +432,7 @@ export default function Home() {
                 </li>
 
                 <li className="flex items-center space-x-2 justify-between border-b">
-                  <div className="flex items-start space-x-2 p-4">
+                  <div className="flex items-start space-x-2 p-4 sm:space-x-2 md:space-x-2 lg:space-x-2 sm:p-4 md:p-4 lg:p-4">
                     <img
                       src="/skill.png"
                       alt="Skill Icon"
@@ -408,17 +444,17 @@ export default function Home() {
                 </li>
 
                 <li className="flex items-center space-x-2 justify-between border-b">
-                  <div className="flex items-start space-x-2 p-4">
+                  <div className="flex items-start space-x-2 p-4 sm:space-x-2 md:space-x-2 lg:space-x-2 sm:p-4 md:p-4 lg:p-4">
                     <img
                       src="/lang.png"
-                      alt="YouTube Icon"
+                      alt="Language Icon"
                       className="w-5 h-5"
                     />
                     <strong>Language:</strong>
                   </div>
                   <span className="ml-auto">English</span>
                 </li>
-                <li className="flex items-center space-x-2 justify-between border-b">
+                <li className="flex items-center space-x-2 justify-between border-b sm:space-x-4 md:space-x-6 lg:space-x-8 sm:justify-start md:justify-between">
                   <a
                     href="#"
                     className="flex items-start space-x-2 p-4 text-blue-600 hover:text-blue-800"
@@ -436,15 +472,33 @@ export default function Home() {
       {/* Video Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white w-4/5 md:w-1/2 h-[80%] rounded-lg p-4">
-            <iframe
-              className="w-full h-full"
-              src={videoSrc}
-              title="Video Preview"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+          <div className="w-4/5 md:w-1/2 h-[80%] p-4 relative">
+            {/* Video on larger screens */}
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] hidden sm:block">
+              <iframe
+                className="w-full h-full object-cover"
+                src={videoSrc}
+                title="Video Preview"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            {/* Pop-up on smaller screens */}
+            <div className="sm:hidden w-full h-auto p-4 bg-white rounded-lg shadow-lg">
+              <p className="text-center text-lg font-semibold text-gray-700">
+                Enroll in the Course
+              </p>
+              <p className="text-center text-gray-600 mt-2">
+                Join now to unlock full access to all course content.
+              </p>
+              <button className="block w-full mt-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">
+                Enroll Now
+              </button>
+            </div>
+
+            {/* Close button */}
             <button
               onClick={handleCloseModal}
               className="absolute top-2 right-2 text-white bg-red-500 hover:bg-red-700 p-2 rounded-full"
