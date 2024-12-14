@@ -447,7 +447,7 @@ export default function Home() {
               allowFullScreen
             ></iframe>
             <p className="text-gray-600 mt-2 w-full">
-              Start the course and learn more about Web Development.
+              Start the course and learn Web Development.
             </p>
 
             {/* Enroll Button */}
