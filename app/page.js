@@ -234,15 +234,16 @@ export default function Home() {
           {" "}
           {/* Wrapper for max width */}
           <div className="ml">
-            <h1 className="text-3xl md:text-4xl font-bold text-blue-950">
-              HTML and CSS
+            <h1 className="text-3xl md:text-4xl font-bold text-blue-950 font-sans">
+              Beginner Course for Learning{" "}
+              <span className="block">HTML and CSS</span>
             </h1>
-            <p className="text-gray-600 text-xl mt-3">
+            <p className="text-gray-600 text-xl mt-3 font-sans">
               A Unique Interactive Python Experience With Nearly 200 Exercises
               and Quizzes.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4 mt-4 text-sm md:text-base text-gray-500 ml-">
+          <div className="flex flex-wrap items-center gap-4 mt-4 text-sm md:text-base text-gray-500 mb-4 font-sans">
             <span>Mentor by John M</span>
           </div>
           <Button onClick={handleButtonClick}>Go to Course</Button>
@@ -253,8 +254,8 @@ export default function Home() {
       <div id="wrap" className="w-full mx-auto max-w-[960px]  flex ">
         {/* Center Column Content */}
         <div id="center-column" className="w-full md:w-2/3">
-          <div className=" w-full p-4 border-2">
-            <div className="text-xl font-bold text-gray-800 mb-6">
+          <div className=" w-full p-4 border rounded-lg">
+            <div className="text-xl font-bold text-gray-800 mb-6 font-sans">
               Course Content
             </div>
             <div className="text-gray-600 flex justify-between">
@@ -267,29 +268,36 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-4 flex flex-col space-y-4">
               {courseContent.map((section, index) => (
                 <div key={index}>
                   <button
                     onClick={() => toggleDropdown(index)}
-                    className="w-full text-left flex items-center justify-between text-gray-800 text-sm sm:text-base md:text-lg font-semibold py-3 sm:py-4 px-4 sm:px-6 border border-gray-300"
+                    className="w-full text-left flex items-center justify-between text-gray-800 font-semibold font-sans text-sm sm:text-base md:text-lg py-3 sm:py-4 px-4 sm:px-6 border border-gray-300 rounded-lg hover:bg-gray-200"
                   >
                     <span>{section.name}</span>
                     <svg
-                      className={`w-4 h-4 transform transition-transform ${
-                        openIndex === index ? "rotate-180" : ""
-                      }`}
+                      className="h-5 w-5 text-sm sm:text-base md:text-lg font-sans font-semibold"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
+                      {openIndex.includes(index)? (
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M18 12H6" // Minus icon
+                        />
+                      ) : (
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M12 6v12m6-6H6" // Plus icon
+                        />
+                      )}
                     </svg>
                   </button>
 
@@ -300,7 +308,7 @@ export default function Home() {
                           key={videoIndex}
                           className="flex items-center space-x-2"
                         >
-                          <p className="flex-1 text-gray-700 mb-2">
+                          <p className="flex-1 text-gray-700 mb-4 font-sans text-[18px]">
                             {video.title}
                           </p>
 
@@ -308,9 +316,9 @@ export default function Home() {
                           {video.title === "Quiz" ? (
                             <>
                               <img
-                                src="/ideas.png" // Show doc.png for "Quiz"
-                                alt="Document Icon"
-                                className="w-5 h-5" // Adjust size as needed
+                                src="/quiz.png" // Show doc.png for "Quiz"
+                                alt="Quiz icon"
+                                className="w-6 h-6 " // Adjust size as needed
                               />
                               <span className="text-gray-700">
                                 Quiz for practice!
@@ -320,9 +328,9 @@ export default function Home() {
                           ) : video.title === "Curriculam Document" ? (
                             <>
                               <img
-                                src="/doc.png" // Show doc.png for "Curriculam Document"
+                                src="/file.png" // Show doc.png for "Curriculam Document"
                                 alt="Document Icon"
-                                className="w-5 h-5" // Adjust size as needed
+                                className="w-6 h-6" // Adjust size as needed
                               />
                               <span className="text-gray-700">
                                 Document attached
@@ -331,13 +339,13 @@ export default function Home() {
                           ) : (
                             <>
                               <img
-                                src="/youtube.png" // Show youtube.png for other videos
-                                alt="YouTube Icon"
-                                className="w-5 h-5" // Adjust size as needed
+                                src="/view.png" // Show youtube.png for other videos
+                                alt="View icon"
+                                className="w-6 h-6" // Adjust size as needed
                               />
                               <button
                                 onClick={() => handleVideoClick(video.link)}
-                                className="text-blue-600 hover:text-blue-800 mt-0"
+                                className="text-blue-400 hover:text-blue-600 mt-0"
                               >
                                 Preview Video
                               </button>
@@ -352,22 +360,22 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full p-4 sm:p-6 md:p-8 text-gray-800 mb-6   border-gray-300 text-sm sm:text-base md:text-lg">
-            <div className="text-xl font-bold text-gray-800 mb-6">
+            <div className="text-xl font-bold text-gray-800 mb-6 font-sans">
               Requirement
             </div>
-            <ul className="list-disc list-inside text-sm sm:text-base md:text-lg text-gray-800 mt-2 sm:mt-4 md:mt-6 space-y-2 sm:space-y-3 md:space-y-4">
+            <ul className="list-disc list-inside text-sm sm:text-base md:text-lg text-gray-800 mt-2 sm:mt-4 md:mt-6 space-y-2 sm:space-y-3 md:space-y-4 font-sans">
               <li>We've got you covered whether you have a Mac or a PC.</li>
               <li>Prepare to write thousands of lines of Python exercises!</li>
               <li>No previous experience with Python or coding is required.</li>
             </ul>
           </div>
           <div className="w-full p-4 sm:p-6 md:p-8 text-gray-800 mb-6  border-gray-300 text-sm sm:text-base md:text-lg">
-            <div className="text-xl font-bold text-gray-800 mb-6">
+            <div className="text-xl font-bold text-gray-800 mb-6 font-sans">
               Instructor
             </div>
-            <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <div className="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
               {/* Profile image */}
-              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-20 lg:h-20 rounded-full overflow-hidden">
+              <div className="w-20 h-20 sm:w-20 sm:h-20 md:w-32 md:h-32 lg:w-20 lg:h-20 rounded-full overflow-hidden">
                 <img
                   src="profile.jpg"
                   alt="Instructor Profile"
@@ -376,16 +384,16 @@ export default function Home() {
               </div>
               {/* Instructor's name and subtitle on the right */}
               <div className="flex flex-col items-start sm:items-start md:items-start lg:items-start xl:items-start space-y-2">
-                <div className="text-lg font-semibold text-blue-600 underline">
+                <div className="text-lg font-semibold text-gray-500 font-sans">
                   John M
                 </div>
-                <div className="text-gray-600 text-sm">
+                <div className="text-gray-600 text-sm font-sans">
                   Developer and Instructor
                 </div>
               </div>
             </div>
             {/* Description below the name and subtitle */}
-            <p className="text-gray-700 w-full mt-4 text-sm sm:text-base md:text-lg">
+            <p className="text-gray-700 w-full mt-4 text-sm sm:text-base md:text-lg font-sans">
               John is an experienced mentor specializing in web development.
               With years of expertise in crafting dynamic websites and
               applications, he guides learners in mastering modern web
@@ -403,11 +411,11 @@ export default function Home() {
               onClick={scrollToTop}
               id="back_to_top"
               type="button"
-              className="fixed bottom-5 right-5 bg-gray-700 text-white p-3 rounded-full shadow-lg hover:bg-black transition-transform transform hover:scale-110"
+              className="fixed bottom-5 right-5 bg-gray-700 text-white p-4 rounded-full shadow-lg hover:bg-black transition-transform transform hover:scale-110"
             >
               <svg
-                width="12"
-                height="12"
+                width="15"
+                height="15"
                 viewBox="0 0 12 7"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -438,12 +446,12 @@ export default function Home() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
-            <p className="text-gray-600 mt-2">
-              This is a detailed description of the featured video.
+            <p className="text-gray-600 mt-2 w-full">
+              Start the course and learn more about Web Development.
             </p>
 
             {/* Enroll Button */}
-            <button className="mt-4 w-full px-6 py-3 rounded-lg bg-green-500 text-white text-sm font-semibold shadow hover:bg-green-600 transition focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <button className="mt-4 w-full px-7 py-4 rounded-lg border-sm bg-custom-green text-white text-md font-semibold shadow hover:bg-green-500 transition focus:outline-none focus:ring-2 focus:ring-purple-500">
               Enroll
             </button>
 
@@ -454,7 +462,7 @@ export default function Home() {
               </h3>
               <ul className="text-gray-600 mt-2 space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5">
                 <li className="flex items-center space-x-2 justify-between border-b sm:space-x-3 md:space-x-4 lg:space-x-5">
-                  <div className="flex items-start space-x-2 p-4 sm:space-x-2 md:space-x-2 lg:space-x-2 sm:p-4 md:p-4 lg:p-4">
+                  <div className="flex items-start space-x-2 p-4 sm:space-x-2 md:space-x-2 lg:space-x-2 sm:p-4 md:p-4 lg:p-4 font-sans">
                     <img
                       src="/youtube.png"
                       alt="YouTube Icon"
@@ -462,11 +470,11 @@ export default function Home() {
                     />
                     <strong>Lecture:</strong>
                   </div>
-                  <span className="ml-auto">40</span>
+                  <span className="ml-auto">40 lectures</span>
                 </li>
 
                 <li className="flex items-center space-x-2 justify-between border-b">
-                  <div className="flex items-start space-x-2 p-4 sm:space-x-2 md:space-x-2 lg:space-x-2 sm:p-4 md:p-4 lg:p-4">
+                  <div className="flex items-start space-x-2 p-4 sm:space-x-2 md:space-x-2 lg:space-x-2 sm:p-4 md:p-4 lg:p-4 font-sans">
                     <img
                       src="/skill.png"
                       alt="Skill Icon"
@@ -478,7 +486,7 @@ export default function Home() {
                 </li>
 
                 <li className="flex items-center space-x-2 justify-between border-b">
-                  <div className="flex items-start space-x-2 p-4 sm:space-x-2 md:space-x-2 lg:space-x-2 sm:p-4 md:p-4 lg:p-4">
+                  <div className="flex items-start space-x-2 p-4 sm:space-x-2 md:space-x-2 lg:space-x-2 sm:p-4 md:p-4 lg:p-4 font-sans">
                     <img
                       src="/lang.png"
                       alt="Language Icon"
@@ -486,9 +494,9 @@ export default function Home() {
                     />
                     <strong>Language:</strong>
                   </div>
-                  <span className="ml-auto">English</span>
+                  <span className="ml-auto">Malayalam</span>
                 </li>
-                <li className="flex items-center space-x-2 justify-between border-b sm:space-x-4 md:space-x-6 lg:space-x-8 sm:justify-start md:justify-between">
+                <li className="flex items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 justify-center border-b">
                   <a
                     href="#"
                     className="flex items-start space-x-2 p-4 text-blue-600 hover:text-blue-800"

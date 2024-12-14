@@ -1,7 +1,7 @@
 // components/Button.js
 const Button = ({ children, onClick }) => (
     <button
-      className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
+      className="bg-custom-green text-white px-6  py-3  rounded-lg hover:bg-green-600 font-semibold"
       onClick={onClick}
     >
       {children}
