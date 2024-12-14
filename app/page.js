@@ -243,7 +243,7 @@ export default function Home() {
               and Quizzes.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4 mt-4 text-sm md:text-base text-gray-500 mb-4 font-sans">
+          <div className="flex flex-wrap sm:items-start gap-4 mt-4 text-sm md:text-base text-gray-500 mb-4 font-sans">
             <span>Mentor by John M</span>
           </div>
           <Button onClick={handleButtonClick}>Go to Course</Button>
