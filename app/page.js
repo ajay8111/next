@@ -11,9 +11,18 @@ export default function Home() {
   const [videoSrc, setVideoSrc] = useState("");
   const [areAllExpanded, setAreAllExpanded] = useState(false); // Track "Expand All" state
   const [isScrollButtonVisible, setIsScrollButtonVisible] = useState(false);
+  const [isVideoPopupVisible, setIsVideoPopupVisible] = useState(false);
 
   const handleButtonClick = () => {
     router.push("/course");
+  };
+
+  const handleThumbClick = () => {
+    setIsVideoPopupVisible(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsVideoPopupVisible(false);
   };
 
   const toggleDropdown = (index) => {
@@ -283,7 +292,7 @@ export default function Home() {
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      {openIndex.includes(index)? (
+                      {openIndex.includes(index) ? (
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -437,15 +446,60 @@ export default function Home() {
           id="right-column"
           className="w-full sm:w-[calc(50%-20px)] md:w-[calc(33.33%-20px)] lg:w-[calc(25%-20px)] p-4 flex-grow absolute top-0 right-0 lg:right-20 mt-8"
         >
-          <div className="hidden sm:block bg-white border rounded-lg p-4 shadow-md fixed top-4 right-40 z-50">
-            <iframe
-              className="w-full aspect-video shadow-lg rounded-lg"
-              src="https://www.youtube.com/embed/hu-q2zYwEYs"
-              title="The Modern Python 3 Bootcamp"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+          <div className="hidden sm:block bg-white border rounded-lg p-4 shadow-md fixed top-10 right-40 z-50">
+            <div className="relative w-full aspect-video shadow-lg rounded-lg">
+              <img
+                className="w-full h-full object-cover rounded-lg"
+                src="/html.jpg" // Replace with the correct path to your image
+                alt="HTML Preview"
+              />
+              {/* Animated Play Button */}
+              <div
+                className="absolute inset-0 flex items-center justify-center"
+                onClick={handleThumbClick}
+              >
+                <div className="w-16 h-16 bg-gray-900 bg-opacity-80 rounded-full flex items-center justify-center animate-pulse">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M14.752 11.168l-4.586-2.669A1 1 0 009 9.38v5.238a1 1 0 001.166.97l4.586-2.669a1 1 0 000-1.732z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              {isVideoPopupVisible && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                  <div className="relative w-full sm:w-2/3 p-4  rounded-lg ">
+                    {/* Close Button */}
+                    <button
+                      onClick={handleClosePopup}
+                      className="absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center"
+                    >
+                      <img src="/close.png" alt="Close" className="w-10 h-8" />
+                    </button>
+
+                    {/* Video Iframe */}
+                    <iframe
+                      className="w-full aspect-video rounded-lg"
+                      src="https://www.youtube.com/embed/hu-q2zYwEYs"
+                      title="The Modern Python 3 Bootcamp"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <p className="text-gray-600 mt-2 w-full">
               Start the course and learn Web Development.
             </p>
@@ -535,7 +589,7 @@ export default function Home() {
               <p className="text-center text-gray-600 mt-2">
                 Join now to unlock full access to all course content.
               </p>
-              <button className="block w-full mt-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">
+              <button className="block w-full mt-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700">
                 Enroll Now
               </button>
             </div>
@@ -543,9 +597,9 @@ export default function Home() {
             {/* Close button */}
             <button
               onClick={handleCloseModal}
-              className="absolute top-2 right-2 text-white bg-red-500 hover:bg-red-700 p-2 rounded-full"
+              className="absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center"
             >
-              X
+              <img src="/close.png" alt="Close" className="w-10 h-8" />
             </button>
           </div>
         </div>
