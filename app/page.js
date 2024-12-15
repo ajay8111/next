@@ -505,7 +505,7 @@ export default function Home() {
             </p>
 
             {/* Enroll Button */}
-            <button className="mt-4 w-full px-6 py-3 rounded-lg border-sm bg-custom-green text-white text-md font-semibold shadow hover:bg-green-500 transition focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <button className="mt-4 w-full px-6 py-3 rounded-lg border-sm bg-custom-green text-white text-md font-semibold shadow hover:bg-green-500 transition ">
               Enroll
             </button>
 
