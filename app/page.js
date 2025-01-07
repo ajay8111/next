@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "./components/Button";
+import Breadcrumbs from "@/utils/Breadcrumbs";
 
 export default function Home() {
   const router = useRouter();
@@ -505,7 +506,8 @@ export default function Home() {
             </p>
 
             {/* Enroll Button */}
-            <button className="mt-4 w-full px-6 py-3 rounded-lg border-sm bg-custom-green text-white text-md font-semibold shadow hover:bg-green-500 transition ">
+            <button onClick={handleButtonClick}
+            className="mt-4 w-full px-6 py-3 rounded-lg border-sm bg-custom-green text-white text-md font-semibold shadow hover:bg-green-500 transition ">
               Enroll
             </button>
 
@@ -589,7 +591,9 @@ export default function Home() {
               <p className="text-center text-gray-600 mt-2">
                 Join now to unlock full access to all course content.
               </p>
-              <button className="block w-full mt-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700">
+              <button
+              onClick={handleButtonClick} 
+              className="block w-full mt-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700">
                 Enroll Now
               </button>
             </div>
@@ -607,3 +611,5 @@ export default function Home() {
     </div>
   );
 }
+
+
